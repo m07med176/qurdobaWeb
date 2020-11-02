@@ -9,17 +9,18 @@ class QuerryFormSellers(forms.Form):
                       ("فايز", "فايز"),
                       ("حسن", "حسن"),
                       ("إبراهيم", "إبراهيم"), ]
-    nameOfMandoop = forms.ChoiceField(label="إسم المندوب",widget=forms.RadioSelect(),choices=nameOfMandoops)
+    nameOfMandoop = forms.ChoiceField(required=True,label="إسم المندوب",widget=forms.RadioSelect(),choices=nameOfMandoops)
     areas = [("نبروه", "نبروه"),
              ("بلقاس", "بلقاس")]
-    area = forms.CharField( label="المنطقة",widget=forms.Select(choices=areas))
+    area = forms.CharField( required=True,label="المنطقة",widget=forms.Select(choices=areas))
     activityKinds = [("سنترال وخدمات محمول", "سنترال وخدمات محمول"),
                      ("خدمات كمبيوتر", "خدمات كمبيوتر")]
-    activityKind = forms.ChoiceField(widget=forms.RadioSelect(),choices=activityKinds, label="نوع النشاط ")
-    shopName = forms.CharField(max_length=50, label="إسم المحل ")
-    ownerName = forms.CharField(max_length=50, label="إسم صاحب العمل ")
-    phoneNumber = forms.CharField(max_length=50, label="رقم التليفون ", validators=[numeric])
-    address = forms.CharField(max_length=100,widget=forms.Textarea, label="العنوان بالتفصيل ")
+    activityKind = forms.ChoiceField(widget=forms.RadioSelect(),choices=activityKinds, required=True,label="نوع النشاط ")
+
+    shopName = forms.CharField(max_length=50, required=True,label="إسم المحل ")
+    ownerName = forms.CharField(max_length=50, required=True,label="إسم صاحب العمل ")
+    phoneNumber = forms.CharField(max_length=50, required=True,label="رقم التليفون ", validators=[numeric])
+    address = forms.CharField(max_length=100,widget=forms.Textarea, required=True,label="العنوان بالتفصيل ")
     machinesOfepays = [("امان", "امان"),
                        ("فورى", "فورى"),
                        ("بى", "بى"),
@@ -27,10 +28,10 @@ class QuerryFormSellers(forms.Form):
                        ("ضامن", "ضامن"),
                        ("سداد", "سداد"),
                        ]
-    machinesOfepay = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=machinesOfepays, label="مكن الدفع الإلكترونى ")
+    machinesOfepay = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=machinesOfepays, required=True,label="مكن الدفع الإلكترونى ")
     tayers = [("يوجد", "يوجد"),
               ("لا يوجد", "لا يوجد")]
-    tayer = forms.ChoiceField(widget=forms.RadioSelect(),choices=tayers, label="الطاير ")
+    tayer = forms.ChoiceField(widget=forms.RadioSelect(),choices=tayers, required=True,label="الطاير ")
     intention = forms.CharField(max_length=100,label="",required=False,widget=forms.TextInput(attrs={'placeholder': "ما مدى قابليته للتعامل معنا ?"}))
 
     amountOfTreats = [
@@ -38,7 +39,7 @@ class QuerryFormSellers(forms.Form):
         ("من 10 الاف ل 25000", "من 10 الاف ل 25000"),
         ("من 25 الف ل 50 الف", "من 25 الف ل 50 الف"),
         ("اعلي من 50 الف", "اعلي من 50 الف")]
-    amountOfTreat = forms.ChoiceField(widget=forms.RadioSelect(),choices=amountOfTreats, label="حجم التعامل ")
+    amountOfTreat = forms.ChoiceField(widget=forms.RadioSelect(),choices=amountOfTreats, required=True,label="حجم التعامل ")
     kindOfMobiles = [
         ("سامسونج", "سامسونج"),
         ("هواوى", "هواوى"),
@@ -47,16 +48,16 @@ class QuerryFormSellers(forms.Form):
         ("نوكيا", "نوكيا"),
         ("انفنكس", "انفنكس"),
         ("أوبو", "أوبو")]
-    kindOfMobile = forms.MultipleChoiceField( widget=forms.CheckboxSelectMultiple,choices=kindOfMobiles, label="نوع اجهزه المحمول")
+    kindOfMobile = forms.MultipleChoiceField( widget=forms.CheckboxSelectMultiple,choices=kindOfMobiles, required=True,label="نوع اجهزه المحمول")
     evaluates = [
         ("مهم", "مهم"),
         ("مهم جدا", "مهم جدا"),
         ("متوسط", "متوسط"),
         ("غير مهم", "غير مهم"),
     ]
-    evaluate = forms.ChoiceField(widget=forms.RadioSelect(),choices=evaluates, label="التقييم")
+    evaluate = forms.ChoiceField(widget=forms.RadioSelect(),choices=evaluates, required=True,label="التقييم")
 
-    notes = forms.CharField(max_length=100,widget=forms.Textarea, label="الملاحظات")
+    notes = forms.CharField(max_length=100,widget=forms.Textarea, required=False,label="الملاحظات")
 
 
 class QuerryFormSellers2(forms.ModelForm):

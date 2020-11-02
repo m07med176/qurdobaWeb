@@ -1,24 +1,139 @@
 {% extends 'querriesTraders/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="container">
-        <div class="p-3 mb-2 jumbotron text-dark">
-            <form method="POST">
-                <h1 align="center">قرطبة للإتصالات</h1>
-                {% csrf_token %}
-                {{form|crispy}}
-                <input class="form-control mt-4 bg-secondary text-light" value="حفظ" type="submit" >
+				<nav class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group btn-group-lg" role="group">
+						<a class="btn btn-primary active" href="#formLogin">المندوب</a>
+						<a class="btn btn-primary" href="#trader">التاجر</a>
+						<a class="btn btn-primary" href="#epay">مكن الدفع الإلكترونى</a>
+						<a class="btn btn-primary" href="#tayer">الطاير</a>
+						<a class="btn btn-primary" href="#mobile">المحمول</a>
+						<a class="btn btn-primary" href="#evaluate">التقييمات</a>
 
-            </form>
+					</div>
+				</nav>
+        <hr class="mb-4">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+
+						<!-- form card login -->
+      <form method="POST" class="form" >
+          {% csrf_token %}
+
+            <div class="card card-outline-secondary">
+                <span class="anchor" id="formLogin"></span>
+              <div class="card-header">
+                <h3 class="mb-0"> المندوب</h3>
+              </div>
+              <div class="card-body">
+
+                    {{form.nameOfMandoop|as_crispy_field}}
+                    {{form.area|as_crispy_field}}
+
+              </div><!--/card-block-->
+            </div><!-- /المندوب -->
+
+          <hr class="mb-3">
+            <div class="card card-outline-secondary">
+                <span class="anchor" id="trader"></span>
+              <div class="card-header">
+                <h3 class="mb-0">التاجر</h3>
+              </div>
+              <div class="card-body">
+
+
+                    {{form.ownerName|as_crispy_field}}
+                    {{form.shopName|as_crispy_field}}
+                    {{form.phoneNumber|as_crispy_field}}
+                    {{form.address|as_crispy_field}}
+
+
+              </div><!--/card-block-->
+            </div><!-- /التاجر -->
+
+          <hr class="mb-3">
+            <div class="card card-outline-secondary">
+                <span class="anchor" id="epay"></span>
+              <div class="card-header">
+                <h3 class="mb-0">الدفع الإلكترونى</h3>
+              </div>
+              <div class="card-body">
+
+
+                    {{form.machinesOfepay|as_crispy_field}}
+
+
+
+              </div><!--/card-block-->
+            </div><!-- /الدفع الإلكترونى -->
+
+            <hr class="mb-3">
+            <div class="card card-outline-secondary">
+                <span class="anchor" id="tayer"></span>
+              <div class="card-header">
+                <h3 class="mb-0">الطاير</h3>
+              </div>
+              <div class="card-body">
+
+
+                    {{form.tayer|as_crispy_field}}
+                    {{form.intention|as_crispy_field}}
+
+
+
+              </div><!--/card-block-->
+            </div><!--  الطاير -->
+
+          <hr class="mb-3">
+            <div class="card card-outline-secondary">
+                <span class="anchor" id="mobile"></span>
+              <div class="card-header">
+                <h3 class="mb-0">المحمول</h3>
+              </div>
+              <div class="card-body">
+
+
+                    {{form.kindOfMobile|as_crispy_field}}
+
+
+
+              </div><!--/card-block-->
+            </div><!--  المحمول -->
+
+          <hr class="mb-3">
+            <div class="card card-outline-secondary">
+                <span class="anchor" id="evaluate"></span>
+              <div class="card-header">
+                <h3 class="mb-0">التقييمات</h3>
+              </div>
+              <div class="card-body">
+                    {{form.amountOfTreat|as_crispy_field}}
+                    {{form.evaluate|as_crispy_field}}
+                    {{form.notes|as_crispy_field}}
+
+                  <input class="form-control btn btn-success btn-lg float-center text-light" value="حفظ" type="submit" >
+
+              </div><!--/card-block-->
+            </div><!--  التقييمات -->
+
+
+
+      </form>
+          </div>
         </div>
-    </div>
+
+<!-- Scroll to Top -->
+<a id="scroll-to-top" href="#" class="btn btn-primary btn-lg" role="button" title="Return to top of page" data-toggle="tooltip" data-placement="left">
+    <i class="fa fa-arrow-up"></i></a>
 
 
 {% endblock %}
 
 {% block script %}
 <script type='text/javascript'>
-$('#id_intention').hide()
+//$('input[name="machinesOfepay"]').attr("name","machinesOfepay[]");
+//$('input[name="kindOfMobile"]').attr("name","kindOfMobile[]");
+$('#id_intention').hide();
 $('input:radio[name="nameOfMandoop"]').change(
     function(){
             var waleed = `<option value='نبروه'>نبروه<option>
@@ -34,7 +149,7 @@ $('input:radio[name="nameOfMandoop"]').change(
                         <option value='بلقاس'>بلقاس<option>
                         <option value='المعصره'>المعصره<option>
                         <option value='بهوت'>بهوت<option>`;
-        
+
             var fayes = `<option value='ميت بدر'> ميت بدر<option>
                         <option value='ميت خميس'> ميت خميس<option>
                         <option value='منية سندوب'> منية سندوب<option>
@@ -48,7 +163,7 @@ $('input:radio[name="nameOfMandoop"]').change(
                         <option value='نوسا البحر'> نوسا البحر<option>
                         <option value='كفر الشنهاب'> كفر الشنهاب<option>
                         <option value='اويش الحجر'> اويش الحجر<option>`;
-        
+
             var hassan = `<option value='ميت الكرما'> ميت الكرما<option>
                         <option value='جوجر'> جوجر<option>
                         <option value='منشاه البدوى'> منشاه البدوى<option>
@@ -60,7 +175,7 @@ $('input:radio[name="nameOfMandoop"]').change(
                         <option value='بساط'> بساط<option>
                         <option value='كفربساط'> كفربساط<option>
                         <option value='بطره'> بطره<option>`;
-        
+
             var ibrahim = `<option value='ميت مزاح'> ميت مزاح<option>
                         <option value='الريدانيه'> الريدانيه<option>
                         <option value='سلامون'> سلامون<option>
@@ -102,12 +217,11 @@ $('input:radio[name="nameOfMandoop"]').change(
 
 
 $('input:radio[name="tayer"]').change(
-
     function(){
-        if ($(this).is(':checked') && $(this).val() == 'a') {
-            $('#id_intention').show();
+        if ($(this).is(':checked') && $(this).val() == 'يوجد') {
+            $('#id_intention').fadeIn(500);
         }else{
-            $('#id_intention').hide();
+            $('#id_intention').fadeOut(500);
         }
     });
 

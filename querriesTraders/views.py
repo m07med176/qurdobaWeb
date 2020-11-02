@@ -89,11 +89,11 @@ def getFormQuerry(request):
             ownerName = theForm.cleaned_data.get('ownerName')
             phoneNumber = theForm.cleaned_data.get('phoneNumber')
             address = theForm.cleaned_data.get('address')
-            machinesOfepay = theForm.cleaned_data.get('machinesOfepay')
+            machinesOfepay = theForm.cleaned_data.getlist('machinesOfepay')
             tayer = theForm.cleaned_data.get('tayer')
             intention = theForm.cleaned_data.get('intention')
             amountOfTreat = theForm.cleaned_data.get('amountOfTreat')
-            kindOfMobile = theForm.cleaned_data.get('kindOfMobile')
+            kindOfMobile = theForm.cleaned_data.getlist('kindOfMobile')
             evaluate = theForm.cleaned_data.get('evaluate')
             notes = theForm.cleaned_data.get('notes')
             data = db(nameOfMandoop=nameOfMandoop,

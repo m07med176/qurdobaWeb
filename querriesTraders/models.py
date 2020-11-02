@@ -5,57 +5,57 @@ from customersApp.models import Sellers
 numeric = RegexValidator(r'^[0-9+]', 'Only digit characters.')
 class QuerrySellers(models.Model):
         ## -------- بيانات التاجر -------------------
-        nameOfMandoops = [("a", "وليد"),
-                     ("b", "فايز"),
-                     ("c", "حسن"),
-                     ("d", "إبراهيم"),]
+        nameOfMandoops = [("فايز", "وليد"),
+                     ("فايز", "فايز"),
+                     ("حسن", "حسن"),
+                     ("إبراهيم", "إبراهيم"),]
         nameOfMandoop = models.CharField(max_length=50,verbose_name = "إسم المندوب",choices =nameOfMandoops)
-        areas = [("a", "نبروه"),
-                     ("b", "بلقاس")]
+        areas = [("نبروه", "نبروه"),
+                     ("بلقاس", "بلقاس")]
         area = models.CharField(max_length=50,verbose_name = "المنطقة",choices =areas)
-        activityKinds=[("a", "سنترال وخدمات محمول"),
-                     ("b", "خدمات كمبيوتر")]
-        activityKind = models.CharField(max_length=20,choices=activityKinds,verbose_name = "نوع النشاط ",editable=True)
-        shopName = models.CharField(max_length=50,verbose_name = "إسم المحل ")
-        ownerName = models.CharField(max_length=50,verbose_name = "إسم صاحب العمل ")
-        phoneNumber = models.CharField(max_length=50,verbose_name = "رقم التليفون ",validators=[numeric])
-        address = models.TextField(max_length=100,verbose_name = "العنوان بالتفصيل ")
-        machinesOfepays = [("a", "امان"),
-                     ("b", "فورى"),
-                     ("c", "بى"),
-                     ("d", "مصارى"),
-                     ("e", "ضامن"),
-                     ("f", "سداد"),
+        activityKinds=[("سنترال وخدمات محمول", "سنترال وخدمات محمول"),
+                     ("خدمات كمبيوتر", "خدمات كمبيوتر")]
+        activityKind = models.CharField(max_length=20,choices=activityKinds,null=True,verbose_name = "نوع النشاط ")
+        shopName = models.CharField(max_length=50,null=True,verbose_name = "إسم المحل ")
+        ownerName = models.CharField(max_length=50,null=True,verbose_name = "إسم صاحب العمل ")
+        phoneNumber = models.CharField(max_length=50,null=True,verbose_name = "رقم التليفون ",validators=[numeric])
+        address = models.TextField(max_length=100,null=True,verbose_name = "العنوان بالتفصيل ")
+        machinesOfepays = [("امان", "امان"),
+                     ("فورى", "فورى"),
+                     ("بى", "بى"),
+                     ("مصارى", "مصارى"),
+                     ("ضامن", "ضامن"),
+                     ("سداد", "سداد"),
                            ]
-        machinesOfepay = models.CharField(max_length=20,choices=machinesOfepays,verbose_name = "مكن الدفع الإلكترونى ",editable=True)
-        tayers = [("a", "يوجد"),
-                     ("b", "لا يوجد") ]
-        tayer = models.CharField(max_length=20,choices=tayers,verbose_name = "الطاير ")
+        machinesOfepay = models.CharField(max_length=20,choices=machinesOfepays,null=True,verbose_name = "مكن الدفع الإلكترونى ",editable=True)
+        tayers = [("يوجد", "يوجد"),
+                     ("لا يوجد", "لا يوجد") ]
+        tayer = models.CharField(max_length=20,choices=tayers,null=True,verbose_name = "الطاير ")
         intention = models.CharField(max_length=100,null=True,verbose_name = "ما مدى قابليته للتعامل معنا")
         amountOfTreats=[
-            ("a", "اقل من 10 الاف"),
-            ("b", "من 10 الاف ل 25000"),
-            ("c", "من 25 الف ل 50 الف"),
-            ("d", "اعلي من 50 الف")]
-        amountOfTreat = models.CharField(max_length=20,choices=amountOfTreats,verbose_name = "حجم التعامل ")
+            ("اقل من 10 الاف", "اقل من 10 الاف"),
+            ("من 10 الاف ل 25000", "من 10 الاف ل 25000"),
+            ("من 25 الف ل 50 الف", "من 25 الف ل 50 الف"),
+            ("اعلي من 50 الف", "اعلي من 50 الف")]
+        amountOfTreat = models.CharField(max_length=20,choices=amountOfTreats,null=True,verbose_name = "حجم التعامل ")
         kindOfMobiles=[
-            ("a", "سامسونج"),
-            ("b", "هواوى"),
-            ("c", "أبل"),
-            ("d", "شاومى"),
-            ("e", "نوكيا"),
-            ("f", "انفنكس"),
-            ("g", "أوبو")]
-        kindOfMobile = models.CharField(max_length=20,choices=kindOfMobiles,verbose_name = "نوع اجهزه المحمول")
+            ("سامسونج", "سامسونج"),
+            ("هواوى", "هواوى"),
+            ("أبل", "أبل"),
+            ("شاومى", "شاومى"),
+            ("نوكيا", "نوكيا"),
+            ("انفنكس", "انفنكس"),
+            ("أوبو", "أوبو")]
+        kindOfMobile = models.CharField(max_length=20,choices=kindOfMobiles,null=True,verbose_name = "نوع اجهزه المحمول")
         evaluates=[
-            ("a", "مهم"),
-            ("b", "مهم جدا"),
-            ("c", "متوسط"),
-            ("d", "غير مهم"),
+            ("مهم", "مهم"),
+            ("مهم جدا", "مهم جدا"),
+            ("متوسط", "متوسط"),
+            ("غير مهم", "غير مهم"),
         ]
-        evaluate = models.CharField(max_length=20,choices=evaluates,verbose_name = "التقييم")
+        evaluate = models.CharField(max_length=20,choices=evaluates,null=True,verbose_name = "التقييم")
 
-        notes = models.TextField(max_length=100,verbose_name = "الملاحظات")
+        notes = models.TextField(max_length=100,null=True,verbose_name = "الملاحظات")
         
         # CharField
         # , widget=forms.RadioSelect()
