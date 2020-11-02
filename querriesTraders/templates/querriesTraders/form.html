@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <div class="p-3 mb-2 jumbotron text-dark">
-            <form method="POST" class="form-group">
+            <form method="POST">
                 <h1 align="center">قرطبة للإتصالات</h1>
                 {% csrf_token %}
                 {{form|crispy}}
