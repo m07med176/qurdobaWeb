@@ -1,0 +1,27 @@
+@font-face{
+    font-family: 'Tajawal';
+    src: url('../fonts/Tajawal/Tajawal-Regular.ttf')format("truetype"),
+    local('Tajawal');
+}
+
+html , body{
+    direction: rtl;
+    text-align: right;
+}
+
+body{
+    font-family: 'Tajawal' , sans-serif;
+}
+
+.form-check-label{
+margin-right: 18px;
+}
+.requiredField{
+font-size:18pt;
+font-weight:bold;
+color:#dc3545;
+}
+
+fawry-color{
+background-color:#ffefbd;
+}
