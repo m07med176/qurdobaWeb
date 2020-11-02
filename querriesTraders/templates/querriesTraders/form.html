@@ -1,0 +1,118 @@
+{% extends 'querriesTraders/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <div class="p-3 mb-2 jumbotron text-dark">
+            <form method="POST" class="form-group">
+                <h1 align="center">قرطبة للإتصالات</h1>
+                {% csrf_token %}
+                {{form|crispy}}
+                <input class="form-control mt-4 bg-secondary text-light" value="حفظ" type="submit" >
+
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+<script type='text/javascript'>
+$('#id_intention').hide()
+$('input:radio[name="nameOfMandoop"]').change(
+    function(){
+            var waleed = `<option value='نبروه'>نبروه<option>
+                        <option value='نشا'>نشا<option>
+                        <option value='طيبه'>طيبه<option>
+                        <option value='طبنوها'>طبنوها<option>
+                        <option value='كفر بهوت'>كفر بهوت<option>
+                        <option value='الدروتين'>الدروتين<option>
+                        <option value='نبروه'>نبروه<option>
+                        <option value='دميره'>دميره<option>
+                        <option value='كفر دميره الجديد'>كفر دميره الجديد<option>
+                        <option value='الخازندار'>الخازندار<option>
+                        <option value='بلقاس'>بلقاس<option>
+                        <option value='المعصره'>المعصره<option>
+                        <option value='بهوت'>بهوت<option>`;
+        
+            var fayes = `<option value='ميت بدر'> ميت بدر<option>
+                        <option value='ميت خميس'> ميت خميس<option>
+                        <option value='منية سندوب'> منية سندوب<option>
+                        <option value='نقيطة'> نقيطة<option>
+                        <option value='عزبة الحواوشه'> عزبة الحواوشه<option>
+                        <option value='سلكا'> سلكا<option>
+                        <option value='نوسا الغيط'> نوسا الغيط<option>
+                        <option value='أجا'> أجا<option>
+                        <option value='منية سمنود'> منية سمنود<option>
+                        <option value='سنبخت'> سنبخت<option>
+                        <option value='نوسا البحر'> نوسا البحر<option>
+                        <option value='كفر الشنهاب'> كفر الشنهاب<option>
+                        <option value='اويش الحجر'> اويش الحجر<option>`;
+        
+            var hassan = `<option value='ميت الكرما'> ميت الكرما<option>
+                        <option value='جوجر'> جوجر<option>
+                        <option value='منشاه البدوى'> منشاه البدوى<option>
+                        <option value='شرنقاش'> شرنقاش<option>
+                        <option value='ميت عنتر'> ميت عنتر<option>
+                        <option value='الطويله'> الطويله<option>
+                        <option value='كتامه'> كتامه<option>
+                        <option value='ديسط'> ديسط<option>
+                        <option value='بساط'> بساط<option>
+                        <option value='كفربساط'> كفربساط<option>
+                        <option value='بطره'> بطره<option>`;
+        
+            var ibrahim = `<option value='ميت مزاح'> ميت مزاح<option>
+                        <option value='الريدانيه'> الريدانيه<option>
+                        <option value='سلامون'> سلامون<option>
+                        <option value='منية محله دمنه'> منية محله دمنه<option>
+                        <option value='الجزيره'> الجزيره<option>
+                        <option value='القباب الصغرى والكبرى'> القباب الصغرى والكبرى<option>
+                        <option value='دموه'> دموه<option>
+                        <option value='ميت ضافر'> ميت ضافر<option>
+                        <option value='دكرنس'> دكرنس<option>
+                        <option value='ميت فارس'> ميت فارس<option>
+                        <option value='بنى عبيد'> بنى عبيد<option>
+                        <option value='طناح'> طناح<option>
+                        <option value='الخليج'> الخليج<option>
+                        <option value='بدين'> بدين<option>
+                        <option value='الدنابيق'> الدنابيق<option>
+                        <option value='ميت مزاح'> ميت مزاح<option>
+                        <option value='الريدانيه'> الريدانيه<option>
+                        <option value='سلامون'> سلامون<option>`;
+
+        if ($(this).is(':checked') && $(this).val() == 'وليد') {
+            $('#id_area').children().remove();
+            $('#id_area').append(waleed);
+            }
+            else if($(this).is(':checked') && $(this).val() == 'فايز') {
+            $('#id_area').children().remove();
+            $('#id_area').append(fayes);
+
+
+            }else if($(this).is(':checked') && $(this).val() == 'حسن') {
+            $('#id_area').children().remove();
+            $('#id_area').append(hassan);
+
+
+            }else if($(this).is(':checked') && $(this).val() == 'إبراهيم') {
+            $('#id_area').children().remove();
+            $('#id_area').append(ibrahim);
+            }
+    });
+
+
+$('input:radio[name="tayer"]').change(
+
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'a') {
+            $('#id_intention').show();
+        }else{
+            $('#id_intention').hide();
+        }
+    });
+
+
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'querriesTraders/base.html' %}
+
+{% block content %}
+
+<table class="table table-hover table-striped table-sm mt-3">
+    <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th>إسم المندوب</th>
+            <th>المنطقة</th>
+            <th>نوع النشاط</th>
+            <th>إسم المحل</th>
+            <th>إسم صاحب العمل</th>
+            <th>رقم التليفون</th>
+            <th>العنوان بالتفصيل</th>
+            <th>مكن الدفع الإلكترونى</th>
+            <th>الطاير</th>
+            <th>نية التعامل</th>
+            <th>حجم التعامل</th>
+            <th>نوع اجهزه المحمول</th>
+            <th>التقييم</th>
+            <th>الملاحظات</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for data in all_data%}
+          <tr>
+            <td>{{data.id}}</td>
+            <td>{{data.nameOfMandoop}}</td>
+            <td>{{data.area}}</td>
+            <td>{{data.activityKind}}</td>
+            <td>{{data.shopName}}</td>
+            <td>{{data.ownerName}}</td>
+            <td>{{data.phoneNumber}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.machinesOfepay}}</td>
+            <td>{{data.tayer}}</td>
+            <td>{{data.intention}}</td>
+            <td>{{data.amountOfTreat}}</td>
+            <td>{{data.kindOfMobile}}</td>
+            <td>{{data.evaluate}}</td>
+            <td>{{data.notes}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+<br>
+<a href="{% url 'extract' %}" class="btn btn-warning text-center">إستخراج ملف الإكسل</a>
+
+{% endblock %}
