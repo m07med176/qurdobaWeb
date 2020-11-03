@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'customersApp',
     'querriesTraders',
     'crispy_forms',
+    'welcomeApp',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

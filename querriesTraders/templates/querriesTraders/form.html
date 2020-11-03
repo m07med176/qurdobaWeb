@@ -1,25 +1,25 @@
 {% extends 'querriesTraders/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-				<nav class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
-					<div class="btn-group btn-group-lg" role="group">
-						<a class="btn btn-primary active" href="#formLogin">المندوب</a>
-						<a class="btn btn-primary" href="#trader">التاجر</a>
-						<a class="btn btn-primary" href="#epay">مكن الدفع الإلكترونى</a>
-						<a class="btn btn-primary" href="#tayer">الطاير</a>
-						<a class="btn btn-primary" href="#mobile">المحمول</a>
-						<a class="btn btn-primary" href="#evaluate">التقييمات</a>
+<!--				<nav class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">-->
+<!--					<div class="btn-group btn-group-lg" role="group">-->
+<!--						<a class="btn btn-primary active" href="#formLogin">المندوب</a>-->
+<!--						<a class="btn btn-primary" href="#trader">التاجر</a>-->
+<!--						<a class="btn btn-primary" href="#epay">مكن الدفع الإلكترونى</a>-->
+<!--						<a class="btn btn-primary" href="#tayer">الطاير</a>-->
+<!--						<a class="btn btn-primary" href="#mobile">المحمول</a>-->
+<!--						<a class="btn btn-primary" href="#evaluate">التقييمات</a>-->
 
-					</div>
-				</nav>
+<!--					</div>-->
+<!--				</nav>-->
         <hr class="mb-4">
         <div class="row justify-content-center">
           <div class="col-md-6">
 
 						<!-- form card login -->
-      <form method="POST" class="form" >
+      <form method="POST" class="form" id="form">
           {% csrf_token %}
-
+            <div id="box_message"></div>
             <div class="card card-outline-secondary">
                 <span class="anchor" id="formLogin"></span>
               <div class="card-header">
@@ -46,6 +46,7 @@
                     {{form.shopName|as_crispy_field}}
                     {{form.phoneNumber|as_crispy_field}}
                     {{form.address|as_crispy_field}}
+                    {{form.activityKind|as_crispy_field}}
 
 
               </div><!--/card-block-->
@@ -111,7 +112,7 @@
                     {{form.evaluate|as_crispy_field}}
                     {{form.notes|as_crispy_field}}
 
-                  <input class="form-control btn btn-success btn-lg float-center text-light" value="حفظ" type="submit" >
+                  <button id="submitting" type="submit" class="form-control btn btn-success btn-lg float-center text-light" >حفــظ</button>
 
               </div><!--/card-block-->
             </div><!--  التقييمات -->
@@ -123,20 +124,40 @@
         </div>
 
 <!-- Scroll to Top -->
-<a id="scroll-to-top" href="#" class="btn btn-primary btn-lg" role="button" title="Return to top of page" data-toggle="tooltip" data-placement="left">
-    <i class="fa fa-arrow-up"></i></a>
+<!--<a id="scroll-to-top" href="#" class="btn btn-primary btn-lg" role="button" title="Return to top of page" data-toggle="tooltip" data-placement="left">-->
+<!--    <i class="fa fa-arrow-up"></i></a>-->
 
 
 {% endblock %}
 
 {% block script %}
 <script type='text/javascript'>
+
+var data5 = document.getElementById('div_id_activityKind');
+data5.innerHTML + '<input style="float:right" type="text"> name="activityKind" value="other"';
+
 //$('input[name="machinesOfepay"]').attr("name","machinesOfepay[]");
 //$('input[name="kindOfMobile"]').attr("name","kindOfMobile[]");
 $('#id_intention').hide();
-$('input:radio[name="nameOfMandoop"]').change(
-    function(){
-            var waleed = `<option value='نبروه'>نبروه<option>
+        function removeOptionEmpty(areas){
+                $('#id_area').children().remove();
+                $('#id_area').append(areas);
+                  const options = document.getElementById('id_area').querySelectorAll('option');
+                            options.forEach((optionmm) => {
+                            var regions = optionmm.value;
+                            if (regions===''){
+                                optionmm.className = "remove-option";
+                                $('.remove-option').remove();
+                                }
+                             });
+};
+
+$('#id_nameOfMandoop').change(function(){
+
+
+
+
+var waleed = `<option value='نبروه'>نبروه<option>
                         <option value='نشا'>نشا<option>
                         <option value='طيبه'>طيبه<option>
                         <option value='طبنوها'>طبنوها<option>
@@ -195,33 +216,33 @@ $('input:radio[name="nameOfMandoop"]').change(
                         <option value='الريدانيه'> الريدانيه<option>
                         <option value='سلامون'> سلامون<option>`;
 
-        if ($(this).is(':checked') && $(this).val() == 'وليد') {
-            $('#id_area').children().remove();
-            $('#id_area').append(waleed);
+        if ($(this).val() === 'وليد') {
+            removeOptionEmpty(waleed);
             }
-            else if($(this).is(':checked') && $(this).val() == 'فايز') {
-            $('#id_area').children().remove();
-            $('#id_area').append(fayes);
+            else if($(this).val() === 'فايز') {
+
+                removeOptionEmpty(fayes);
 
 
-            }else if($(this).is(':checked') && $(this).val() == 'حسن') {
-            $('#id_area').children().remove();
-            $('#id_area').append(hassan);
+
+            }else if($(this).val() === 'حسن') {
+
+            removeOptionEmpty(hassan);
 
 
-            }else if($(this).is(':checked') && $(this).val() == 'إبراهيم') {
-            $('#id_area').children().remove();
-            $('#id_area').append(ibrahim);
+            }else if($(this).val() === 'إبراهيم') {
+            removeOptionEmpty(ibrahim);
             }
-    });
+});
+
 
 
 $('input:radio[name="tayer"]').change(
     function(){
         if ($(this).is(':checked') && $(this).val() == 'يوجد') {
             $('#id_intention').fadeIn(500);
-        }else{
-            $('#id_intention').fadeOut(500);
+        }else if($(this).is(':checked') && $(this).val() == 'لا يوجد'){
+            $('#id_intention').fadeIn(500);
         }
     });
 
