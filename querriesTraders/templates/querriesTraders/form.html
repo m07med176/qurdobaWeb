@@ -97,10 +97,43 @@
 
 
                     {{form.kindOfMobile|as_crispy_field}}
+<div id="rate_value">
+    <div style="max-width:100%"></div>
+    <div class="left" id="left1">
+		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR1(this.value)" />
+        <input class="interest" id="interest1" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR1(this.value)">
+	</div>
+    <div class="left" id="left2">
+		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR2(this.value)" />
+        <input class="interest" id="interest2" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR2(this.value)">
+	</div>
+    <div class="left" id="left3">
+		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR3(this.value)" />
+        <input class="interest" id="interest3" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR3(this.value)">
+	</div>
+    <div class="left" id="left4">
+		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR4(this.value)" />
+        <input class="interest" id="interest4" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR4(this.value)">
+	</div>
+    <div class="left" id="left5">
+		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR5(this.value)" />
+        <input class="interest" id="interest5" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR5(this.value)">
+	</div>
+    <div class="left" id="left6">
+		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR6(this.value)" />
+        <input class="interest" id="interest6" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR6(this.value)">
+	</div>
+    <div class="left" id="left7">
+		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR7(this.value)" />
+        <input class="interest" id="interest7" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR7(this.value)">
+	</div>
 
+</div>
 
 
               </div><!--/card-block-->
+
+
             </div><!--  المحمول -->
 
           <hr class="mb-3">
@@ -118,23 +151,9 @@
 
               </div><!--/card-block-->
             </div><!--  التقييمات -->
-
-
-
-      </form>
-
-
-	<div id="left">
-
-			<input id="interest" type="text" value="4 %" onkeypress="enterCheck()" onchange="focusoutIR(this.value)">
-
-		<input type="range" min="1.0" max="10.0" value="4" step=".5" onchange="changedIR(this.value)" />
-
-	</div>
-
-
-          </div>
+          </form>
         </div>
+      </div>
 
 <!-- Scroll to Top -->
 <!--<a id="scroll-to-top" href="#" class="btn btn-primary btn-lg" role="button" title="Return to top of page" data-toggle="tooltip" data-placement="left">-->
@@ -166,6 +185,71 @@ function changedIR(newValue) {
 function focusoutIR(newValue) {
 	var ir = newValue.replace(/%/gi,'');
 	document.getElementById("interest").value = ir+" %";
+	verify();
+}
+
+function changedIR2(newValue) {
+	var ir = newValue;
+	document.getElementById("interest2").value = ir+" %";
+	verify();
+}
+function focusoutIR2(newValue) {
+	var ir = newValue.replace(/%/gi,'');
+	document.getElementById("interest2").value = ir+" %";
+	verify();
+}
+function changedIR3(newValue) {
+	var ir = newValue;
+	document.getElementById("interest3").value = ir+" %";
+	verify();
+}
+function focusoutIR3(newValue) {
+	var ir = newValue.replace(/%/gi,'');
+	document.getElementById("interest3").value = ir+" %";
+	verify();
+}
+
+function changedIR4(newValue) {
+	var ir = newValue;
+	document.getElementById("interest4").value = ir+" %";
+	verify();
+}
+function focusoutIR4(newValue) {
+	var ir = newValue.replace(/%/gi,'');
+	document.getElementById("interest4").value = ir+" %";
+	verify();
+}
+
+function changedIR5(newValue) {
+	var ir = newValue;
+	document.getElementById("interest5").value = ir+" %";
+	verify();
+}
+function focusoutIR5(newValue) {
+	var ir = newValue.replace(/%/gi,'');
+	document.getElementById("interest5").value = ir+" %";
+	verify();
+}
+
+function changedIR6(newValue) {
+	var ir = newValue;
+	document.getElementById("interest6").value = ir+" %";
+	verify();
+}
+function focusoutIR6(newValue) {
+	var ir = newValue.replace(/%/gi,'');
+	document.getElementById("interest6").value = ir+" %";
+	verify();
+}
+
+function changedIR7(newValue) {
+	var ir = newValue;
+	document.getElementById("interest7").value = ir+" %";
+	verify();
+}
+function focusoutIR7(newValue) {
+	var ir = newValue.replace(/%/gi,'');
+	document.getElementById("interest7").value = ir+" %";
 	verify();
 }
 
@@ -325,8 +409,29 @@ $('input:radio[name="tayer"]').change(
 
     $('input[name="kindOfMobile"]').change(
     function(){
-    $('#left').fadeIn(500);
-    $('#div_id_kindOfMobile').append($('#left'))
+        if ($(this).val() == 'سامسونج') {
+                 $('#left1').insertAfter($('label[for="id_kindOfMobile_1"]'))
+                $('#left1').fadeIn(500);
+         }
+        else if($(this).val() == 'هواوى'){
+        $('#left2').insertAfter($('label[for="id_kindOfMobile_2"]'))
+        $('#left2').fadeIn(500);
+        }
+        else if($(this).val() == 'أبل'){
+        $('#left3').insertAfter($('label[for="id_kindOfMobile_3"]'))
+        $('#left3').fadeIn(500); }
+        else if($(this).val() == 'شاومى'){
+        $('#left4').insertAfter($('label[for="id_kindOfMobile_4"]'))
+        $('#left4').fadeIn(500); }
+        else if($(this).val() == 'نوكيا'){
+        $('#left5').insertAfter($('label[for="id_kindOfMobile_5"]'))
+        $('#left5').fadeIn(500); }
+        else if($(this).val() == 'انفنكس'){
+        $('#left6').insertAfter($('label[for="id_kindOfMobile_6"]'))
+        $('#left6').fadeIn(500); }
+        else if($(this).val() == 'أوبو'){
+        $('#left7').insertAfter($('label[for="id_kindOfMobile_7"]'))
+        $('#left7').fadeIn(500); }
     });
 // ------------------  End indentation --------------------\\
     </script>
