@@ -17,9 +17,10 @@
           <div class="col-md-6">
 
 						<!-- form card login -->
-      <form method="POST" class="form" id="form">
+      <form class="form" id="form">
           {% csrf_token %}
-            <div id="box_message"></div>
+          <div class="alert alert-success" role="alert" id="box_message_success">تم التسجيل بنجاح</div>
+          <div class="alert alert-danger" role="alert" id="box_message_danger">عفوا حدث خطأ أثناء التسجيل</div>
             <div class="card card-outline-secondary">
                 <span class="anchor" id="formLogin"></span>
               <div class="card-header">
@@ -47,6 +48,7 @@
                     {{form.phoneNumber|as_crispy_field}}
                     {{form.address|as_crispy_field}}
                     {{form.activityKind|as_crispy_field}}
+                    {{form.activityKind2|as_crispy_field}}
 
 
               </div><!--/card-block-->
@@ -112,7 +114,7 @@
                     {{form.evaluate|as_crispy_field}}
                     {{form.notes|as_crispy_field}}
 
-                  <button id="submitting" type="submit" class="form-control btn btn-success btn-lg float-center text-light" >حفــظ</button>
+                  <button id="submitting" class="form-control btn btn-success btn-lg float-center text-light" >حفــظ</button>
 
               </div><!--/card-block-->
             </div><!--  التقييمات -->
@@ -120,6 +122,17 @@
 
 
       </form>
+
+
+	<div id="left">
+
+			<input id="interest" type="text" value="4 %" onkeypress="enterCheck()" onchange="focusoutIR(this.value)">
+
+		<input type="range" min="1.0" max="10.0" value="4" step=".5" onchange="changedIR(this.value)" />
+
+	</div>
+
+
           </div>
         </div>
 
@@ -132,12 +145,89 @@
 
 {% block script %}
 <script type='text/javascript'>
+// ---------------------rate --------------------\\
+$(document).ready(function() {
+	$('input[type="text"]').live('focus', function() {
+	    var inp = this;
+	    //alert("HI");
+	    setTimeout(function() {
+	        inp.select();
+	    }, 1);
+	});
 
-var data5 = document.getElementById('div_id_activityKind');
-data5.innerHTML + '<input style="float:right" type="text"> name="activityKind" value="other"';
+});
 
-//$('input[name="machinesOfepay"]').attr("name","machinesOfepay[]");
-//$('input[name="kindOfMobile"]').attr("name","kindOfMobile[]");
+
+function changedIR(newValue) {
+	var ir = newValue;
+	document.getElementById("interest").value = ir+" %";
+	verify();
+}
+function focusoutIR(newValue) {
+	var ir = newValue.replace(/%/gi,'');
+	document.getElementById("interest").value = ir+" %";
+	verify();
+}
+
+
+// ---------------------End rate --------------------\\
+
+// ------------------ start ajax section --------------------- \\
+        const form =  document.getElementById('form');
+        const message_box =  document.getElementById('box');
+
+        //$(this).serialize(),
+
+        const csrf = document.getElementsByName('csrfmiddlewaretoken');
+
+        const url = "";
+
+
+        //form.addEventListener('submit',(e)=>{
+        $(document).on('click','#submitting',function (e) {
+        var data = new FormData($('form')[0]);
+
+
+            e.preventDefault();
+            $.ajax({
+              type:'POST',
+              enctype: 'multipart/form-data',
+              url:url,
+              data:data,
+              dataType: 'json',
+              cache: false,
+              processData: false,
+              contentType: false,
+                success:function(response){
+                    if (response.status == "true"){
+                    $('#form')[0].reset();
+                    $(window).scrollTop(0);
+                    $('#box_message_success').fadeIn(500);
+                    $('#box_message_success').fadeOut(5000);
+                    }
+                },
+                error:function(error){
+                if (error.status == "false"){
+
+                $('#form')[0].reset();
+                $(window).scrollTop(0);
+                $('#box_message_danger').fadeIn(500);
+                $('#box_message_danger').fadeOut(5000);
+                }}
+            });
+        });
+    // ------------------ end ajax section --------------------- \\
+
+// ------------------ Start set other choice ----------------- \\
+var data5 = document.getElementById('special_machinesOfepay');
+$('#div_id_activityKind .form-check')[2].append(data5);
+$('#special_machinesOfepay').attr('class','textinput textInput');
+$('#special_machinesOfepay').attr('name','activityKind');
+$('#special_machinesOfepay').fadeIn(500);
+//data5.innerHTML + '<input style="float:right" type="text"> name="activityKind" value="other"'>;
+// ------------------ End set other choice ----------------- \\
+
+// ------------------  Start removeOptionEmpty --------------------\\
 $('#id_intention').hide();
         function removeOptionEmpty(areas){
                 $('#id_area').children().remove();
@@ -151,25 +241,24 @@ $('#id_intention').hide();
                                 }
                              });
 };
+// ------------------  End removeOptionEmpty --------------------\\
 
+// ------------------  Start set region according seller --------------------\\
 $('#id_nameOfMandoop').change(function(){
 
-
-
-
-var waleed = `<option value='نبروه'>نبروه<option>
-                        <option value='نشا'>نشا<option>
-                        <option value='طيبه'>طيبه<option>
-                        <option value='طبنوها'>طبنوها<option>
-                        <option value='كفر بهوت'>كفر بهوت<option>
-                        <option value='الدروتين'>الدروتين<option>
-                        <option value='نبروه'>نبروه<option>
-                        <option value='دميره'>دميره<option>
-                        <option value='كفر دميره الجديد'>كفر دميره الجديد<option>
-                        <option value='الخازندار'>الخازندار<option>
-                        <option value='بلقاس'>بلقاس<option>
-                        <option value='المعصره'>المعصره<option>
-                        <option value='بهوت'>بهوت<option>`;
+            var waleed = `<option value='نبروه'>نبروه<option>
+                                    <option value='نشا'>نشا<option>
+                                    <option value='طيبه'>طيبه<option>
+                                    <option value='طبنوها'>طبنوها<option>
+                                    <option value='كفر بهوت'>كفر بهوت<option>
+                                    <option value='الدروتين'>الدروتين<option>
+                                    <option value='نبروه'>نبروه<option>
+                                    <option value='دميره'>دميره<option>
+                                    <option value='كفر دميره الجديد'>كفر دميره الجديد<option>
+                                    <option value='الخازندار'>الخازندار<option>
+                                    <option value='بلقاس'>بلقاس<option>
+                                    <option value='المعصره'>المعصره<option>
+                                    <option value='بهوت'>بهوت<option>`;
 
             var fayes = `<option value='ميت بدر'> ميت بدر<option>
                         <option value='ميت خميس'> ميت خميس<option>
@@ -216,27 +305,15 @@ var waleed = `<option value='نبروه'>نبروه<option>
                         <option value='الريدانيه'> الريدانيه<option>
                         <option value='سلامون'> سلامون<option>`;
 
-        if ($(this).val() === 'وليد') {
-            removeOptionEmpty(waleed);
-            }
-            else if($(this).val() === 'فايز') {
-
-                removeOptionEmpty(fayes);
-
-
-
-            }else if($(this).val() === 'حسن') {
-
-            removeOptionEmpty(hassan);
-
-
-            }else if($(this).val() === 'إبراهيم') {
-            removeOptionEmpty(ibrahim);
-            }
+        if ($(this).val() === 'وليد') {removeOptionEmpty(waleed);}
+        else if($(this).val() === 'فايز') {removeOptionEmpty(fayes);}
+        else if($(this).val() === 'حسن') {removeOptionEmpty(hassan);}
+        else if($(this).val() === 'إبراهيم') {removeOptionEmpty(ibrahim);}
 });
+// ------------------  End set region according seller --------------------\\
 
 
-
+// ------------------  Start indentation --------------------\\
 $('input:radio[name="tayer"]').change(
     function(){
         if ($(this).is(':checked') && $(this).val() == 'يوجد') {
@@ -246,8 +323,11 @@ $('input:radio[name="tayer"]').change(
         }
     });
 
-
-
+    $('input[name="kindOfMobile"]').change(
+    function(){
+    $('#left').fadeIn(500);
+    $('#div_id_kindOfMobile').append($('#left'))
+    });
+// ------------------  End indentation --------------------\\
     </script>
-
 {% endblock %}

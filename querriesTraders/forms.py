@@ -20,9 +20,14 @@ class QuerryFormSellers(
     activityKinds = [("سنترال وخدمات محمول", "سنترال وخدمات محمول"),
                      ("خدمات كمبيوتر", "خدمات كمبيوتر"),
                      ("other", "أخر: "),
+                     ("لا يوجد", "لا يوجد"),
                      ]
     activityKind = forms.ChoiceField(widget=forms.RadioSelect(attrs={'id':"other-choice"}),choices=activityKinds, required=True,label="نوع النشاط ")
-
+    activityKind2 = forms.CharField(max_length=50,label='',required=False)
+    activityKind2.widget.attrs.update({'id': 'special_machinesOfepay',
+                                         'name':'activityKind',
+                                         'style':'height:30px;border-radius:10px;display:none;' ,
+                                         'class':'' })
     shopName = forms.CharField(max_length=50, required=True,label="إسم المحل ")
     ownerName = forms.CharField(max_length=50, required=True,label="إسم صاحب العمل ")
     phoneNumber = forms.CharField(max_length=50, required=True,label="رقم التليفون ", validators=[numeric])
@@ -35,6 +40,7 @@ class QuerryFormSellers(
                        ("سداد", "سداد"),
                        ]
     machinesOfepay = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=machinesOfepays, required=True,label="مكن الدفع الإلكترونى ")
+
     tayers = [("يوجد", "يوجد"),
               ("لا يوجد", "لا يوجد")]
     tayer = forms.ChoiceField(widget=forms.RadioSelect(),choices=tayers, required=True,label="الطاير ")

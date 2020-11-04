@@ -1,6 +1,8 @@
 import os
 
 import urllib
+
+import json
 from django.shortcuts import render
 from django.http import HttpResponse , FileResponse , JsonResponse
 from django.core.files.storage import FileSystemStorage
@@ -20,13 +22,9 @@ def formQuerry(request):
     #     acaaa = request.POST.get('data', None)
     #     print(acaaa)
 
-    # dataRespose = {}
-    # if request.method == 'POST':
-    #     print(request.POST)
-    #     name = request.POST.get('name')
-    #     dataRespose['name'] = name
-    #     return JsonResponse(dataRespose, safe=False)
-
+    dataRespose = {}
+    dataRespose['message'] = "عفوا حدث خطأ أثناء التسجيل"
+    dataRespose['status'] = "false"
     if request.method == 'POST':
         nameOfMandoop = request.POST.get('nameOfMandoop')
         area = request.POST.get('area')
@@ -77,6 +75,13 @@ def formQuerry(request):
         #     time=timeOfquerry,
         # )
         # devicesRate.save()
+        dataRespose['message'] = "تم التسجيل بنجاح"
+        dataRespose['status'] = "true"
+        return HttpResponse(
+            json.dumps(dataRespose),
+            content_type="application/json"
+        )
+        #return JsonResponse(dataRespose)
 
     return render(request,'querriesTraders/form.html',{'form':QuerryFormSellers})
 
