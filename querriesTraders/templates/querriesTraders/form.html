@@ -177,14 +177,14 @@ $(document).ready(function() {
 });
 
 
-function changedIR(newValue) {
+function changedIR1(newValue) {
 	var ir = newValue;
-	document.getElementById("interest").value = ir+" %";
+	document.getElementById("interest1").value = ir+" %";
 	verify();
 }
-function focusoutIR(newValue) {
+function focusoutIR1(newValue) {
 	var ir = newValue.replace(/%/gi,'');
-	document.getElementById("interest").value = ir+" %";
+	document.getElementById("interest1").value = ir+" %";
 	verify();
 }
 
