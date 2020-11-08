@@ -17,17 +17,31 @@ class QuerryFormSellers(
     nameOfMandoops = [("وليد", "وليد"),
                       ("فايز", "فايز"),
                       ("حسن", "حسن"),
-                      ("إبراهيم", "إبراهيم"), ]
+                      ("إبراهيم", "إبراهيم"),
+                      ("خط دكرنس", "خط دكرنس"),
+
+                      ]
     nameOfMandoop = forms.CharField(required=True,label="إسم المندوب",widget=forms.Select(choices=nameOfMandoops))
     areas = [("نبروه", "نبروه"),
              ("بلقاس", "بلقاس")]
     area = forms.CharField( required=True,label="المنطقة",widget=forms.Select(choices=areas))
     activityKinds = [("سنترال وخدمات محمول", "سنترال وخدمات محمول"),
                      ("خدمات كمبيوتر", "خدمات كمبيوتر"),
-                     ("other", "أخر: ")
+                     ("عطارة", "عطارة"),
+                     ("مكتبة", "مكتبة"),
+                     ("بقالة", "بقالة"),
+                     ("سوبر ماركت", "سوبر ماركت"),
+                     ("other", "أخرى : "),
                      ]
     activityKind = forms.ChoiceField(widget=forms.RadioSelect(attrs={'id':"other-choice"}),choices=activityKinds, required=True,label="نوع النشاط ")
     activityKind2 = forms.CharField(max_length=50,label='',required=False)
+    sims = [
+        ("فودافون", " فودافون"),
+        ("إتصالات", "إتصالات"),
+        ("أورانج", "أورانج"),
+    ]
+    sim = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=sims, required=True,label="")
+
     activityKind2.widget.attrs.update({'id': 'special_machinesOfepay',
                                          'name':'activityKind',
                                          'style':'height:30px;border-radius:10px;display:none;' ,
@@ -40,15 +54,19 @@ class QuerryFormSellers(
                        ("فورى", "فورى"),
                        ("بى", "بى"),
                        ("مصارى", "مصارى"),
-                       ("ضامن", "ضامن"),
-                       ("سداد", "سداد"),
+                       ("other", "أخرى : "),
                        ]
     machinesOfepay = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=machinesOfepays, required=True,label="مكن الدفع الإلكترونى ")
-
+    machinesOfepay2 = forms.CharField(max_length=50, label='', required=False)
+    machinesOfepay2.widget.attrs.update({'id': 'special_machinesOfepay2',
+                                         'name':'machinesOfepay',
+                                         'style':'height:30px;border-radius:10px;display:none;' ,
+                                         'class':'' })
     tayers = [("يوجد", "يوجد"),
               ("لا يوجد", "لا يوجد")]
-    tayer = forms.ChoiceField(widget=forms.RadioSelect(),choices=tayers, required=True,label="الطاير ")
+    tayer = forms.ChoiceField(widget=forms.RadioSelect(),choices=tayers, required=True,label="")
     intention = forms.CharField(max_length=100,label="",required=False,widget=forms.TextInput(attrs={'placeholder': "ما مدى قابليته للتعامل معنا ?"}))
+    otherphonechoice = forms.CharField(max_length=100,label="",required=False,widget=forms.TextInput(attrs={'placeholder': "ما مدى قابليته للتعامل معنا ?",'class':'left','id':'left8'}))
 
     amountOfTreats = [
         ("اقل من 10 الاف", "اقل من 10 الاف"),
@@ -63,7 +81,9 @@ class QuerryFormSellers(
         ("شاومى", "شاومى"),
         ("نوكيا", "نوكيا"),
         ("انفنكس", "انفنكس"),
-        ("أوبو", "أوبو")]
+        ("أوبو", "أوبو"),
+        ("اخرى", "اخرى"),
+    ]
     kindOfMobile = forms.MultipleChoiceField( widget=forms.CheckboxSelectMultiple,choices=kindOfMobiles, required=True,label="نوع اجهزه المحمول")
     evaluates = [
         ("مهم", "مهم"),

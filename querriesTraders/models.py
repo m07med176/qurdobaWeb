@@ -12,13 +12,21 @@ class QuerrySellers(models.Model):
         nameOfMandoops = [("فايز", "وليد"),
                      ("فايز", "فايز"),
                      ("حسن", "حسن"),
-                     ("إبراهيم", "إبراهيم"),]
+                     ("إبراهيم", "إبراهيم"),
+                     ("خط دكرنس", "خط دكرنس"),
+                          ]
         nameOfMandoop = models.CharField(max_length=50,verbose_name = "إسم المندوب",choices =nameOfMandoops)
         areas = [("نبروه", "نبروه"),
                      ("بلقاس", "بلقاس")]
         area = models.CharField(max_length=50,verbose_name = "المنطقة",choices =areas)
-        activityKinds=[("سنترال وخدمات محمول", "سنترال وخدمات محمول"),
-                         ("خدمات كمبيوتر", "خدمات كمبيوتر")]
+        activityKinds = [("سنترال وخدمات محمول", "سنترال وخدمات محمول"),
+                         ("خدمات كمبيوتر", "خدمات كمبيوتر"),
+                         ("عطارة", "عطارة"),
+                         ("مكتبة", "مكتبة"),
+                         ("بقالة", "بقالة"),
+                         ("سوبر ماركت", "سوبر ماركت"),
+                         ("other", "أخر: ")
+                         ]
         activityKind = models.CharField(max_length=20,choices=activityKinds,null=True,verbose_name = "نوع النشاط ")
         shopName = models.CharField(max_length=50,null=True,verbose_name = "إسم المحل ")
         ownerName = models.CharField(max_length=50,null=True,verbose_name = "إسم صاحب العمل ")
@@ -50,6 +58,12 @@ class QuerrySellers(models.Model):
             ("انفنكس", "انفنكس"),
             ("أوبو", "أوبو")]
         kindOfMobile = models.CharField(max_length=20,choices=kindOfMobiles,null=True,verbose_name = "نوع اجهزه المحمول")
+        sims=[
+            ("فودافون", " فودافون"),
+            ("إتصالات", "إتصالات"),
+            ("أورنج", "أورنج"),
+                ]
+        sim = models.CharField(max_length=20,choices=sims,null=True,verbose_name = "الكارت")
         evaluates=[
             ("مهم", "مهم"),
             ("مهم جدا", "مهم جدا"),

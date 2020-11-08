@@ -34,12 +34,14 @@ def formQuerry(request):
             activityKind = activityKind[1]
         else:
             activityKind = activityKind[0]
+
         shopName = request.POST.get('shopName')
         ownerName = request.POST.get('ownerName')
         phoneNumber = request.POST.get('phoneNumber')
         address = request.POST.get('address')
 
         machinesOfepay = request.POST.getlist('machinesOfepay')
+        if 'other' in machinesOfepay:machinesOfepay.remove('other')
         machinesOfepayForQuerry = enhaceData(machinesOfepay)
 
         tayer = request.POST.get('tayer')
@@ -52,6 +54,14 @@ def formQuerry(request):
             if i.replace('.','',1).isdigit() and float(i) > 0:
                 dataOfRating[kindOfMobile[kindOfMobile.index(i)-1]]=float(i)
         kindOfMobileForQuerry= enhaceData(list(dataOfRating.keys()))
+
+        sim = request.POST.getlist('sim')
+        dataOfRatingSim = {}
+        for i in sim:
+            if i.replace('.', '', 1).isdigit() and float(i) > 0:
+                dataOfRatingSim[sim[sim.index(i) - 1]] = float(i)
+        simQuerry = enhaceData(list(dataOfRatingSim.keys()))
+
         evaluate = request.POST.get('evaluate')
         notes = request.POST.get('notes')
         dateOfquerry = str(datetime.now().date())
@@ -64,6 +74,7 @@ def formQuerry(request):
                   phoneNumber=phoneNumber,
                   address=address,
                   machinesOfepay=machinesOfepayForQuerry,
+                  sim=simQuerry,
                   tayer=tayer,
                   intention=intention,
                   amountOfTreat=amountOfTreat,
@@ -75,6 +86,7 @@ def formQuerry(request):
                   )
         data.save()
         # ---------------- insert in database of device ----------------- #
+        dataOfRating.update(dataOfRatingSim)
         raterid=QuerrySellers.objects.latest('id').id
         for item in dataOfRating:
             devicesRate = Devices(               

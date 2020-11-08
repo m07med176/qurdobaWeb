@@ -65,11 +65,42 @@
 
 
                     {{form.machinesOfepay|as_crispy_field}}
-
+                    {{form.machinesOfepay2|as_crispy_field}}
 
 
               </div><!--/card-block-->
             </div><!-- /الدفع الإلكترونى -->
+
+                      <hr class="mb-3">
+            <div class="card card-outline-secondary">
+                <span class="anchor" id="card"></span>
+              <div class="card-header">
+                <h3 class="mb-0">الكارت</h3>
+              </div>
+              <div class="card-body">
+                    {{form.sim|as_crispy_field}}
+              <div id="rate_value2">
+                <div style="max-width:100%"></div>
+                <div class="left" id="left11">
+                  <input type="range" name="sim" min="0" max="10.0" value="0" step=".5" onchange="changedIR(this.value,'interest11')" />
+                  <input class="interest" id="interest11" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest11')">
+                </div>
+
+                <div class="left" id="left22">
+                  <input type="range" name="sim" min="0" max="10.0" value="0" step=".5" onchange="changedIR(this.value,'interest22')" />
+                  <input class="interest" id="interest22" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest22')">
+                </div>
+
+                <div class="left" id="left33">
+                  <input type="range" name="sim" min="0" max="10.0" value="0" step=".5" onchange="changedIR(this.value,'interest33')" />
+                  <input class="interest" id="interest33" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest33')">
+                </div>
+
+
+            </div>
+
+              </div><!--/card-block-->
+            </div><!--  الكارت -->
 
             <hr class="mb-3">
             <div class="card card-outline-secondary">
@@ -99,39 +130,40 @@
               <div id="rate_value">
                 <div style="max-width:100%"></div>
                 <div class="left" id="left1">
-                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR1(this.value)" />
-                  <input class="interest" id="interest1" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR1(this.value)">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR(this.value,'interest1')" />
+                  <input class="interest" id="interest1" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest1')">
                 </div>
 
                 <div class="left" id="left2">
-                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR2(this.value)" />
-                  <input class="interest" id="interest2" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR2(this.value)">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR(this.value,'interest2')" />
+                  <input class="interest" id="interest2" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest2')">
                 </div>
 
                 <div class="left" id="left3">
-                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR3(this.value)" />
-                  <input class="interest" id="interest3" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR3(this.value)">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR(this.value,'interest3')" />
+                  <input class="interest" id="interest3" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest3')">
                 </div>
 
                 <div class="left" id="left4">
-                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR4(this.value)" />
-                  <input class="interest" id="interest4" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR4(this.value)">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR(this.value,'interest4')" />
+                  <input class="interest" id="interest4" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest4')">
                 </div>
 
                 <div class="left" id="left5">
-                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR5(this.value)" />
-                  <input class="interest" id="interest5" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR5(this.value)">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR(this.value,'interest5')" />
+                  <input class="interest" id="interest5" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest5')">
                 </div>
 
                 <div class="left" id="left6">
-                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR6(this.value)" />
-                  <input class="interest" id="interest6" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR6(this.value)">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR(this.value,'interest6')" />
+                  <input class="interest" id="interest6" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest6')">
                 </div>
 
                 <div class="left" id="left7">
-                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR7(this.value)" />
-                  <input class="interest" id="interest7" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR7(this.value)">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR(this.value,'interest7')" />
+                  <input class="interest" id="interest7" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest7')">
                 </div>
+                                      {{form.otherphonechoice|as_crispy_field}}
 
             </div>
 
@@ -168,6 +200,7 @@
 
 {% block script %}
 <script type='text/javascript'>
+$(document).ready(function(event) {
 // ---------------------rate --------------------\\
 $(document).ready(function() {
 	$('input[type="text"]').live('focus', function() {
@@ -179,78 +212,17 @@ $(document).ready(function() {
 	});
 
 });
-function changedIR1(newValue) {
+function changedIR(newValue,id) {
 	var ir = newValue;
-	document.getElementById("interest1").value = ir+" %";
+	document.getElementById(id).value = ir;
 	verify();
 }
-function focusoutIR1(newValue) {
-	var ir = newValue.replace(/%/gi,'');
-	document.getElementById("interest1").value = ir+" %";
-	verify();
-}
-function changedIR2(newValue) {
+function focusoutIR(newValue,id) {
 	var ir = newValue;
-	document.getElementById("interest2").value = ir+" %";
-	verify();
-}
-function focusoutIR2(newValue) {
-	var ir = newValue.replace(/%/gi,'');
-	document.getElementById("interest2").value = ir+" %";
-	verify();
-}
-function changedIR3(newValue) {
-	var ir = newValue;
-	document.getElementById("interest3").value = ir+" %";
-	verify();
-}
-function focusoutIR3(newValue) {
-	var ir = newValue.replace(/%/gi,'');
-	document.getElementById("interest3").value = ir+" %";
-	verify();
-}
-function changedIR4(newValue) {
-	var ir = newValue;
-	document.getElementById("interest4").value = ir+" %";
-	verify();
-}
-function focusoutIR4(newValue) {
-	var ir = newValue.replace(/%/gi,'');
-	document.getElementById("interest4").value = ir+" %";
-	verify();
-}
-function changedIR5(newValue) {
-	var ir = newValue;
-	document.getElementById("interest5").value = ir+" %";
-	verify();
-}
-function focusoutIR5(newValue) {
-	var ir = newValue.replace(/%/gi,'');
-	document.getElementById("interest5").value = ir+" %";
+	document.getElementById(id).value = ir;
 	verify();
 }
 
-function changedIR6(newValue) {
-	var ir = newValue;
-	document.getElementById("interest6").value = ir+" %";
-	verify();
-}
-function focusoutIR6(newValue) {
-	var ir = newValue.replace(/%/gi,'');
-	document.getElementById("interest6").value = ir+" %";
-	verify();
-}
-
-function changedIR7(newValue) {
-	var ir = newValue;
-	document.getElementById("interest7").value = ir+" %";
-	verify();
-}
-function focusoutIR7(newValue) {
-	var ir = newValue.replace(/%/gi,'');
-	document.getElementById("interest7").value = ir+" %";
-	verify();
-}
 // ---------------------End rate --------------------\\
 
 // ------------------ start ajax section --------------------- \\
@@ -276,7 +248,7 @@ function focusoutIR7(newValue) {
               contentType: false,
                 success:function(response){
                     if (response.status == "true"){
-                    $('#left1,#left2,#left3,#left4,#left5,#left6,#left7').hide();
+                    $('.left').hide();
                     $('#form')[0].reset();
                     $(window).scrollTop(0);
                     $('#box_message_success').fadeIn(500);
@@ -295,18 +267,10 @@ function focusoutIR7(newValue) {
         });
     // ------------------ end ajax section --------------------- \\
 
-// ------------------ Start set other choice ----------------- \\
-var data5 = document.getElementById('special_machinesOfepay');
-$('#div_id_activityKind .form-check')[2].append(data5);
-$('#special_machinesOfepay').attr('class','textinput textInput');
-$('#special_machinesOfepay').attr('name','activityKind');
-$('#special_machinesOfepay').attr('style','border-top: none;border-right: none;border-left: none;');
-$('#special_machinesOfepay').fadeIn(500);
-//data5.innerHTML + '<input style="float:right border-top: none;border-right: none;border-left: none;" type="text"> name="activityKind" value="other"'>;
-// ------------------ End set other choice ----------------- \\
+
 
 // ------------------  Start removeOptionEmpty --------------------\\
-$('#id_intention').hide();
+
         function removeOptionEmpty(areas){
                 $('#id_area').children().remove();
                 $('#id_area').append(areas);
@@ -322,9 +286,7 @@ $('#id_intention').hide();
 // ------------------  End removeOptionEmpty --------------------\\
 
 // ------------------  Start set region according seller --------------------\\
-$('#id_nameOfMandoop').change(function(){
-
-            var waleed = `<option value='نبروه'>نبروه<option>
+var waleed = `<option value='نبروه'>نبروه<option>
                                     <option value='نشا'>نشا<option>
                                     <option value='طيبه'>طيبه<option>
                                     <option value='طبنوها'>طبنوها<option>
@@ -337,6 +299,10 @@ $('#id_nameOfMandoop').change(function(){
                                     <option value='بلقاس'>بلقاس<option>
                                     <option value='المعصره'>المعصره<option>
                                     <option value='بهوت'>بهوت<option>`;
+removeOptionEmpty(waleed);
+$('#id_nameOfMandoop').change(function(){
+
+
 
             var fayes = `<option value='ميت بدر'> ميت بدر<option>
                         <option value='ميت خميس'> ميت خميس<option>
@@ -364,7 +330,7 @@ $('#id_nameOfMandoop').change(function(){
                         <option value='كفربساط'> كفربساط<option>
                         <option value='بطره'> بطره<option>`;
 
-            var ibrahim = `<option value='ميت مزاح'> ميت مزاح<option>
+            var dekernes = `<option value='ميت مزاح'> ميت مزاح<option>
                         <option value='الريدانيه'> الريدانيه<option>
                         <option value='سلامون'> سلامون<option>
                         <option value='منية محله دمنه'> منية محله دمنه<option>
@@ -382,25 +348,21 @@ $('#id_nameOfMandoop').change(function(){
                         <option value='ميت مزاح'> ميت مزاح<option>
                         <option value='الريدانيه'> الريدانيه<option>
                         <option value='سلامون'> سلامون<option>`;
+            var ibrahim = `<option value='ميت مزاح'> ميت مزاح<option>
+                        <option value='الريدانيه'> الريدانيه<option>
+                        <option value='سلامون'> سلامون<option>
+                        <option value='سلامون'> سلامون<option>`;
 
         if ($(this).val() === 'وليد') {removeOptionEmpty(waleed);}
         else if($(this).val() === 'فايز') {removeOptionEmpty(fayes);}
         else if($(this).val() === 'حسن') {removeOptionEmpty(hassan);}
+        else if($(this).val() === 'خط دكرنس') {removeOptionEmpty(dekernes);}
         else if($(this).val() === 'إبراهيم') {removeOptionEmpty(ibrahim);}
 });
 // ------------------  End set region according seller --------------------\\
 
 
-// ------------------  Start indentation --------------------\\
-$('input:radio[name="tayer"]').change(
-    function(){
-        if ($(this).is(':checked') && $(this).val() == 'يوجد') {
-            $('#id_intention').fadeIn(500);
-        }else if($(this).is(':checked') && $(this).val() == 'لا يوجد'){
-            $('#id_intention').fadeIn(500);
-        }
-    });
-// ------------------  End indentation --------------------\\
+
 
 // ------------------  Start rate show and hide  --------------------\\
     $('input[name="kindOfMobile"]').change(
@@ -428,7 +390,46 @@ $('input:radio[name="tayer"]').change(
         else if($(this).val() == 'أوبو'){
         $('#left7').insertAfter($('label[for="id_kindOfMobile_7"]'))
         $('#left7').fadeIn(500); }
+        else if($(this).val() == 'اخرى'){
+        $('#left8').insertAfter($('label[for="id_kindOfMobile_8"]'))
+        $('#left8').fadeIn(500); }
     });
 
+    $('input[name="sim"]').change(
+    function(){
+        if ($(this).val() == 'فودافون') {
+                 $('#left11').insertAfter($('label[for="id_sim_1"]'))
+                $('#left11').fadeIn(500);
+         }
+        else if($(this).val() == 'إتصالات'){
+        $('#left22').insertAfter($('label[for="id_sim_2"]'))
+        $('#left22').fadeIn(500);
+        }
+        else if($(this).val() == 'أورانج'){
+        $('#left33').insertAfter($('label[for="id_sim_3"]'))
+        $('#left33').fadeIn(500); }
+
+    });
+
+
+    // ------------------  End rate show and hide  --------------------\\
+
+    // ------------------ Start set other choice ----------------- \\
+    var data5 = document.getElementById('special_machinesOfepay');
+    $('#div_id_activityKind .form-check')[6].append(data5);
+    $('#special_machinesOfepay').attr('class','textinput textInput');
+    $('#special_machinesOfepay').attr('name','activityKind');
+    $('#special_machinesOfepay').attr('style','border-top: none;border-right: none;border-left: none;');
+    $('#special_machinesOfepay').fadeIn(500);
+
+    $('#special_machinesOfepay2').show();
+    $('#special_machinesOfepay2').attr('name','machinesOfepay');
+    $('#special_machinesOfepay2').attr('style','border-top: none;border-right: none;border-left: none;');
+    $('#div_id_machinesOfepay2').attr('style','float:left; ');
+    $('label[for="id_machinesOfepay_5"]').append($('#div_id_machinesOfepay2'));
+    //data5.innerHTML + '<input style="float:right border-top: none;border-right: none;border-left: none;" type="text"> name="activityKind" value="other"'>;
+    // ------------------ End set other choice ----------------- \\
+
+    });
     </script>
 {% endblock %}
