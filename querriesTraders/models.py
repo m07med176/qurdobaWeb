@@ -2,6 +2,7 @@ from django import forms
 from django.db import models
 from django.core.validators import RegexValidator
 from customersApp.models import Sellers
+from django_google_maps import fields as map_fields
 numeric = RegexValidator(r'^[0-9+]', 'Only digit characters.')
 
 
@@ -61,6 +62,10 @@ class QuerrySellers(models.Model):
         date = models.DateField(null=True,verbose_name = "التاريخ")
         time = models.TimeField(null=True,verbose_name = "الوقت")
 
+            # ----------------- google location ------------------#
+        addressmap = map_fields.AddressField(max_length=200,null=True)
+        geolocation = map_fields.GeoLocationField(max_length=100,null=True)
+
         def __str__(self):
             return self.ownerName
         
@@ -70,7 +75,8 @@ class QuerrySellers(models.Model):
 
 class Devices(models.Model):
     deviceName = models.CharField(max_length=20, verbose_name="نوع الجهاز", null=True)
-    rater_id = models.IntegerField(null=True,verbose_name="المقيم")
-    rate = models.IntegerField(verbose_name="التقييم", null=True)
+    raterName = models.CharField(max_length=20, verbose_name="إسم المقيم", null=True)
+    raterid = models.IntegerField(null=True,verbose_name="المقيم")
+    rate = models.FloatField(verbose_name="التقييم", null=True)
     date = models.DateField(verbose_name="التاريخ", null=True)
     time = models.TimeField(verbose_name="الوقت", null=True)

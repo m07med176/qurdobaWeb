@@ -3,10 +3,15 @@ from django.forms import Textarea
 from django.core.validators import RegexValidator
 from customersApp.models import Sellers
 from querriesTraders.models import QuerrySellers,Devices
+from django.contrib import admin
+
+from django_google_maps import widgets as map_widgets
+from django_google_maps import fields as map_fields
+from address.forms import AddressField
 numeric = RegexValidator(r'^[0-9+]', 'Only digit characters.')
 class QuerryFormSellers(
     forms.Form
-    # ,forms.ModelForm
+     ,admin.ModelAdmin
 ):
     ## -------- بيانات التاجر -------------------
     nameOfMandoops = [("وليد", "وليد"),
@@ -19,8 +24,7 @@ class QuerryFormSellers(
     area = forms.CharField( required=True,label="المنطقة",widget=forms.Select(choices=areas))
     activityKinds = [("سنترال وخدمات محمول", "سنترال وخدمات محمول"),
                      ("خدمات كمبيوتر", "خدمات كمبيوتر"),
-                     ("other", "أخر: "),
-                     ("لا يوجد", "لا يوجد"),
+                     ("other", "أخر: ")
                      ]
     activityKind = forms.ChoiceField(widget=forms.RadioSelect(attrs={'id':"other-choice"}),choices=activityKinds, required=True,label="نوع النشاط ")
     activityKind2 = forms.CharField(max_length=50,label='',required=False)
@@ -71,14 +75,17 @@ class QuerryFormSellers(
 
     notes = forms.CharField(max_length=100,widget=forms.Textarea(attrs={'rows': 4, 'cols': 20,'style':"height: 77px;"}), required=False,label="الملاحظات")
 
-
+    # ----------------- google location ------------------#
+    formfield_overrides = {
+        map_fields.AddressField: {'widget': map_widgets.GoogleMapsAddressWidget},
+    }
     # ## this is for model form id dont know it yet
-    # notes = {
-    #         forms.CharField: {'widget': Textarea(
-    #                            attrs={'rows': 1,
-    #                                   'cols': 20,
-    #                                   'style': 'height: 1em;'})},
-    #     }
+    notesa = {
+            forms.CharField: {'widget': Textarea(
+                                attrs={'rows': 1,
+                                       'cols': 20,
+                                       'style': 'height: 1em;'})},
+        }
     # class Meta:
     # ## this is for model form id dont know it yet
     #     model = QuerrySellers

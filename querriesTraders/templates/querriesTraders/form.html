@@ -1,5 +1,6 @@
 {% extends 'querriesTraders/base.html' %}
 {% load crispy_forms_tags %}
+{% block title %} جدول داتا التجار{% endblock %}
 {% block content %}
 <!--				<nav class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">-->
 <!--					<div class="btn-group btn-group-lg" role="group">-->
@@ -94,41 +95,45 @@
                 <h3 class="mb-0">المحمول</h3>
               </div>
               <div class="card-body">
-
-
                     {{form.kindOfMobile|as_crispy_field}}
-<div id="rate_value">
-    <div style="max-width:100%"></div>
-    <div class="left" id="left1">
-		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR1(this.value)" />
-        <input class="interest" id="interest1" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR1(this.value)">
-	</div>
-    <div class="left" id="left2">
-		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR2(this.value)" />
-        <input class="interest" id="interest2" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR2(this.value)">
-	</div>
-    <div class="left" id="left3">
-		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR3(this.value)" />
-        <input class="interest" id="interest3" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR3(this.value)">
-	</div>
-    <div class="left" id="left4">
-		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR4(this.value)" />
-        <input class="interest" id="interest4" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR4(this.value)">
-	</div>
-    <div class="left" id="left5">
-		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR5(this.value)" />
-        <input class="interest" id="interest5" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR5(this.value)">
-	</div>
-    <div class="left" id="left6">
-		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR6(this.value)" />
-        <input class="interest" id="interest6" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR6(this.value)">
-	</div>
-    <div class="left" id="left7">
-		<input type="range" min="1.0" max="10.0" value="0" step=".5" onchange="changedIR7(this.value)" />
-        <input class="interest" id="interest7" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR7(this.value)">
-	</div>
+              <div id="rate_value">
+                <div style="max-width:100%"></div>
+                <div class="left" id="left1">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR1(this.value)" />
+                  <input class="interest" id="interest1" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR1(this.value)">
+                </div>
 
-</div>
+                <div class="left" id="left2">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR2(this.value)" />
+                  <input class="interest" id="interest2" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR2(this.value)">
+                </div>
+
+                <div class="left" id="left3">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR3(this.value)" />
+                  <input class="interest" id="interest3" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR3(this.value)">
+                </div>
+
+                <div class="left" id="left4">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR4(this.value)" />
+                  <input class="interest" id="interest4" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR4(this.value)">
+                </div>
+
+                <div class="left" id="left5">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR5(this.value)" />
+                  <input class="interest" id="interest5" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR5(this.value)">
+                </div>
+
+                <div class="left" id="left6">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR6(this.value)" />
+                  <input class="interest" id="interest6" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR6(this.value)">
+                </div>
+
+                <div class="left" id="left7">
+                  <input type="range" name="kindOfMobile" min="0" max="10.0" value="0" step=".5" onchange="changedIR7(this.value)" />
+                  <input class="interest" id="interest7" type="text" value="0 %" onkeypress="enterCheck()" onchange="focusoutIR7(this.value)">
+                </div>
+
+            </div>
 
 
               </div><!--/card-block-->
@@ -146,6 +151,7 @@
                     {{form.amountOfTreat|as_crispy_field}}
                     {{form.evaluate|as_crispy_field}}
                     {{form.notes|as_crispy_field}}
+                    {{form.formfield_overrides}}
 
                   <button id="submitting" class="form-control btn btn-success btn-lg float-center text-light" >حفــظ</button>
 
@@ -175,8 +181,6 @@ $(document).ready(function() {
 	});
 
 });
-
-
 function changedIR1(newValue) {
 	var ir = newValue;
 	document.getElementById("interest1").value = ir+" %";
@@ -187,7 +191,6 @@ function focusoutIR1(newValue) {
 	document.getElementById("interest1").value = ir+" %";
 	verify();
 }
-
 function changedIR2(newValue) {
 	var ir = newValue;
 	document.getElementById("interest2").value = ir+" %";
@@ -208,7 +211,6 @@ function focusoutIR3(newValue) {
 	document.getElementById("interest3").value = ir+" %";
 	verify();
 }
-
 function changedIR4(newValue) {
 	var ir = newValue;
 	document.getElementById("interest4").value = ir+" %";
@@ -219,7 +221,6 @@ function focusoutIR4(newValue) {
 	document.getElementById("interest4").value = ir+" %";
 	verify();
 }
-
 function changedIR5(newValue) {
 	var ir = newValue;
 	document.getElementById("interest5").value = ir+" %";
@@ -252,21 +253,14 @@ function focusoutIR7(newValue) {
 	document.getElementById("interest7").value = ir+" %";
 	verify();
 }
-
-
 // ---------------------End rate --------------------\\
 
 // ------------------ start ajax section --------------------- \\
         const form =  document.getElementById('form');
         const message_box =  document.getElementById('box');
-
         //$(this).serialize(),
-
         const csrf = document.getElementsByName('csrfmiddlewaretoken');
-
         const url = "";
-
-
         //form.addEventListener('submit',(e)=>{
         $(document).on('click','#submitting',function (e) {
         var data = new FormData($('form')[0]);
@@ -284,6 +278,7 @@ function focusoutIR7(newValue) {
               contentType: false,
                 success:function(response){
                     if (response.status == "true"){
+                    $('#left1,#left2,#left3,#left4,#left5,#left6,#left7').hide();
                     $('#form')[0].reset();
                     $(window).scrollTop(0);
                     $('#box_message_success').fadeIn(500);
@@ -307,8 +302,9 @@ var data5 = document.getElementById('special_machinesOfepay');
 $('#div_id_activityKind .form-check')[2].append(data5);
 $('#special_machinesOfepay').attr('class','textinput textInput');
 $('#special_machinesOfepay').attr('name','activityKind');
+$('#special_machinesOfepay').attr('style','border-top: none;border-right: none;border-left: none;');
 $('#special_machinesOfepay').fadeIn(500);
-//data5.innerHTML + '<input style="float:right" type="text"> name="activityKind" value="other"'>;
+//data5.innerHTML + '<input style="float:right border-top: none;border-right: none;border-left: none;" type="text"> name="activityKind" value="other"'>;
 // ------------------ End set other choice ----------------- \\
 
 // ------------------  Start removeOptionEmpty --------------------\\
@@ -406,7 +402,9 @@ $('input:radio[name="tayer"]').change(
             $('#id_intention').fadeIn(500);
         }
     });
+// ------------------  End indentation --------------------\\
 
+// ------------------  Start rate show and hide  --------------------\\
     $('input[name="kindOfMobile"]').change(
     function(){
         if ($(this).val() == 'سامسونج') {
@@ -433,6 +431,6 @@ $('input:radio[name="tayer"]').change(
         $('#left7').insertAfter($('label[for="id_kindOfMobile_7"]'))
         $('#left7').fadeIn(500); }
     });
-// ------------------  End indentation --------------------\\
+
     </script>
 {% endblock %}
