@@ -76,16 +76,16 @@ class QuerryFormSellers(
     notes = forms.CharField(max_length=100,widget=forms.Textarea(attrs={'rows': 4, 'cols': 20,'style':"height: 77px;"}), required=False,label="الملاحظات")
 
     # ----------------- google location ------------------#
-    formfield_overrides = {
-        map_fields.AddressField: {'widget': map_widgets.GoogleMapsAddressWidget},
-    }
+    # formfield_overrides = {
+    #     map_fields.AddressField: {'widget': map_widgets.GoogleMapsAddressWidget},
+    # }
     # ## this is for model form id dont know it yet
-    notesa = {
-            forms.CharField: {'widget': Textarea(
-                                attrs={'rows': 1,
-                                       'cols': 20,
-                                       'style': 'height: 1em;'})},
-        }
+    # notesa = {
+    #         forms.CharField: {'widget': Textarea(
+    #                             attrs={'rows': 1,
+    #                                    'cols': 20,
+    #                                    'style': 'height: 1em;'})},
+    #     }
     # class Meta:
     # ## this is for model form id dont know it yet
     #     model = QuerrySellers
