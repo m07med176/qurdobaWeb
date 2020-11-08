@@ -5,9 +5,9 @@ from customersApp.models import Sellers
 from querriesTraders.models import QuerrySellers,Devices
 from django.contrib import admin
 
-from django_google_maps import widgets as map_widgets
-from django_google_maps import fields as map_fields
-from address.forms import AddressField
+#from django_google_maps import widgets as map_widgets
+#from django_google_maps import fields as map_fields
+#from address.forms import AddressField
 numeric = RegexValidator(r'^[0-9+]', 'Only digit characters.')
 class QuerryFormSellers(
     forms.Form

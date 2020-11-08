@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'welcomeApp',
     'address',
-    'django_google_maps',
+    #'django_google_maps',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
