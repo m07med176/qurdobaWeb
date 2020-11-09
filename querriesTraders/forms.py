@@ -74,7 +74,7 @@ class QuerryFormSellers(
         ("من 3000 إلى 5000", "من 3000 إلى 5000"),
         ("أكثر من 5000", "أكثر من 5000"),
     ]
-    amountOfTreat = forms.ChoiceField(widget=forms.RadioSelect(),choices=amountOfTreats, required=True,label="حجم التعامل ")
+    amountOfTreat = forms.ChoiceField(widget=forms.RadioSelect(),choices=amountOfTreats, required=True,label="حجم التعامل فى اليوم")
 
 
     ## ---------------------- خانة الموبايلات ----------------
