@@ -49,19 +49,21 @@ def formQuerry(request):
         amountOfTreat = request.POST.get('amountOfTreat')
 
         kindOfMobile = request.POST.getlist('kindOfMobile')
+        dataCollector = {}
         dataOfRating = {}
         for i in kindOfMobile:
             if i.replace('.','',1).isdigit() and float(i) > 0:
                 dataOfRating[kindOfMobile[kindOfMobile.index(i)-1]]=float(i)
-        kindOfMobileForQuerry= enhaceData(list(dataOfRating.keys()))
-
+        mabalashellondamana= request.POST.get('kindOfMobilebalash')
+        kindOfMobileForQuerry= enhaceData(list(dataOfRating.keys())+list(mabalashellondamana))
         sim = request.POST.getlist('sim')
         dataOfRatingSim = {}
         for i in sim:
             if i.replace('.', '', 1).isdigit() and float(i) > 0:
                 dataOfRatingSim[sim[sim.index(i) - 1]] = float(i)
         simQuerry = enhaceData(list(dataOfRatingSim.keys()))
-
+        dataCollector['mobile']=dataOfRating
+        dataCollector['sim']=dataOfRatingSim
         evaluate = request.POST.get('evaluate')
         notes = request.POST.get('notes')
         dateOfquerry = str(datetime.now().date())
@@ -86,18 +88,20 @@ def formQuerry(request):
                   )
         data.save()
         # ---------------- insert in database of device ----------------- #
-        dataOfRating.update(dataOfRatingSim)
+        # dataOfRating.update(dataOfRatingSim)
         raterid=QuerrySellers.objects.latest('id').id
-        for item in dataOfRating:
-            devicesRate = Devices(               
-                deviceName= item,
-                raterName = ownerName,
-                raterid = raterid,
-                rate= dataOfRating[item],
-                date=dateOfquerry,
-                time=timeOfquerry,
-                )
-            devicesRate.save()
+        for data in dataCollector:
+            for item in dataCollector[data]:
+                devicesRate = Devices(
+                    kind=data,
+                    deviceName= item,
+                    raterName = ownerName,
+                    raterid = raterid,
+                    rate= dataCollector[data][item],
+                    date=dateOfquerry,
+                    time=timeOfquerry,
+                    )
+                devicesRate.save()
         dataRespose['message'] = "تم التسجيل بنجاح"
         dataRespose['status'] = "true"
         return HttpResponse(

@@ -66,14 +66,18 @@ class QuerryFormSellers(
               ("لا يوجد", "لا يوجد")]
     tayer = forms.ChoiceField(widget=forms.RadioSelect(),choices=tayers, required=True,label="")
     intention = forms.CharField(max_length=100,label="",required=False,widget=forms.TextInput(attrs={'placeholder': "ما مدى قابليته للتعامل معنا ?"}))
-    otherphonechoice = forms.CharField(max_length=100,label="",required=False,widget=forms.TextInput(attrs={'placeholder': "ما مدى قابليته للتعامل معنا ?",'class':'left','id':'left8'}))
 
     amountOfTreats = [
-        ("اقل من 10 الاف", "اقل من 10 الاف"),
-        ("من 10 الاف ل 25000", "من 10 الاف ل 25000"),
-        ("من 25 الف ل 50 الف", "من 25 الف ل 50 الف"),
-        ("اعلي من 50 الف", "اعلي من 50 الف")]
+        ("من 0 إلى 500", "من 0 إلى 500"),
+        ("من 500 إلى 1000", "من 500 إلى 1000"),
+        ("من 1000 إلى 3000", "من 1000 إلى 3000"),
+        ("من 3000 إلى 5000", "من 3000 إلى 5000"),
+        ("أكثر من 5000", "أكثر من 5000"),
+    ]
     amountOfTreat = forms.ChoiceField(widget=forms.RadioSelect(),choices=amountOfTreats, required=True,label="حجم التعامل ")
+
+
+    ## ---------------------- خانة الموبايلات ----------------
     kindOfMobiles = [
         ("سامسونج", "سامسونج"),
         ("هواوى", "هواوى"),
@@ -82,9 +86,12 @@ class QuerryFormSellers(
         ("نوكيا", "نوكيا"),
         ("انفنكس", "انفنكس"),
         ("أوبو", "أوبو"),
-        ("اخرى", "اخرى"),
     ]
     kindOfMobile = forms.MultipleChoiceField( widget=forms.CheckboxSelectMultiple,choices=kindOfMobiles, required=True,label="نوع اجهزه المحمول")
+    otherphonechoice = forms.CharField(
+        max_length=100, widget=forms.Textarea(attrs={'rows': 4, 'cols': 20, 'style': "height: 77px;",'placeholder': "ملاحظــــــات",'class':'left','id':'left8'}), required=False,label="")
+    ## ----------------------نهاية خانة الموبايلات ----------------
+
     evaluates = [
         ("مهم", "مهم"),
         ("مهم جدا", "مهم جدا"),

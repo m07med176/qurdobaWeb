@@ -89,6 +89,7 @@ class QuerrySellers(models.Model):
 
 class Devices(models.Model):
     deviceName = models.CharField(max_length=20, verbose_name="نوع الجهاز", null=True)
+    kind = models.CharField(max_length=20, verbose_name="النوع", null=True)
     raterName = models.CharField(max_length=20, verbose_name="إسم المقيم", null=True)
     raterid = models.IntegerField(null=True,verbose_name="المقيم")
     rate = models.FloatField(verbose_name="التقييم", null=True)
