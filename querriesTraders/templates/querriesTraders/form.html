@@ -56,21 +56,69 @@
             </div><!-- /التاجر -->
 
           <hr class="mb-3">
-            <div class="card card-outline-secondary">
+
+          <div class="card card-outline-secondary">
                 <span class="anchor" id="epay"></span>
               <div class="card-header">
                 <h3 class="mb-0">الدفع الإلكترونى</h3>
               </div>
               <div class="card-body">
 
+                  <div id="div_id_machinesOfepay" class="form-group">
+                    <label for="" class=" requiredField">
+                        مكن الدفع الإلكترونى <span class="asteriskField">*</span>
+                    </label>
 
-                    {{form.machinesOfepay|as_crispy_field}}
-                    {{form.machinesOfepay2|as_crispy_field}}
-                    {{form.amountOfTreat|as_crispy_field}}
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="machinesOfepay" id="id_machinesOfepay_1" value="امان">
+                            <label class="form-check-label" for="id_machinesOfepay_1">
+                                امان
+                            </label>
+                            <input id="machinesOfepaynotes1" type="text" name="machinesOfepay" maxlength="50" style="border-top: none;border-right: none;border-left: none;margin-right:5px;" class="textinput textInput fwaries">
+                        </div>
 
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="machinesOfepay" id="id_machinesOfepay_2" value="فورى">
+                            <label class="form-check-label" for="id_machinesOfepay_2">
+                                فورى
+                            </label>
+                            <input id="machinesOfepaynotes2" type="text" name="machinesOfepay" maxlength="50" style="border-top: none;border-right: none;border-left: none;margin-right:5px;" class="textinput textInput fwaries">
+
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="machinesOfepay" id="id_machinesOfepay_3" value="بى">
+                            <label class="form-check-label" for="id_machinesOfepay_3">
+                                بى
+                            </label>
+                            <input id="machinesOfepaynotes3" type="text" name="machinesOfepay" maxlength="50" style="border-top: none;border-right: none;border-left: none;margin-right:5px;" class="textinput textInput fwaries">
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="machinesOfepay" id="id_machinesOfepay_4" value="مصارى">
+                            <label class="form-check-label" for="id_machinesOfepay_4">
+                                مصارى
+                            </label>
+                            <input id="machinesOfepaynotes4" type="text" name="machinesOfepay" maxlength="50" style="border-top: none;border-right: none;border-left: none;margin-right:5px;" class="textinput textInput fwaries">
+                        </div>
+
+                        <div class="form-check">
+<!--                            <input type="checkbox" class="form-check-input" name="machinesOfepay" id="id_machinesOfepay_5" value="other">-->
+<!--                            <label class="form-control-label" for="id_machinesOfepay_5">-->
+<!--                                أخرى :-->
+<!--                            </label>-->
+                            <input placeholder="ملاحظات أخرى" type="text" id="id_machinesOfepay_5" name="machinesOfepay" maxlength="50" style="border-top: none;border-right: none;border-left: none; float:right;width:50%" class="textinput textInput form-control">
+
+                        </div>
+
+                  </div>
+                  <div style="clear:both;">
+                   {{form.amountOfTreat|as_crispy_field}}
+                  </div>
 
               </div><!--/card-block-->
-            </div><!-- /الدفع الإلكترونى -->
+            </div>
+
 
                       <hr class="mb-3">
            <!--   <div class="card card-outline-secondary">
@@ -136,6 +184,10 @@
                         <input class="interest left left33 mt-1" id="interest33" type="text" value="0" onkeypress="enterCheck()" onchange="focusoutIR(this.value,'interest33')">
 
                     </div>
+
+                <div class="form-check">
+                <textarea name="cardnotes" cols="20" rows="4" style="height: 77px;" placeholder="ملاحظــــــات" class="left textarea form-control"  maxlength="100"></textarea>
+                </div>
                 </div>
               </div><!--/card-block-->
           </div>   <!-- card manual code الكارت-->
@@ -400,6 +452,7 @@ $(document).ready(function(event) {
                 success:function(response){
                     if (response.status == "true"){
                     $('.left').hide();
+                    $('.fwaries').hide();
                     $('#form')[0].reset();
                     $(window).scrollTop(0);
                     $('#box_message_success').fadeIn(500);
@@ -566,6 +619,15 @@ $('#id_nameOfMandoop').change(function(){
         else if($(this).val() == 'أورانج'){ $('.left33').fadeIn(500); }
     });
 // ----------------end cards ----------------\\
+// ----------------start epay ----------------\\
+    $('input[name="machinesOfepay"]').change(
+    function(){
+        if ($(this).val() == 'امان')   { $('#machinesOfepaynotes1').fadeIn(500); }
+        else if($(this).val() == 'فورى'){ $('#machinesOfepaynotes2').fadeIn(500); }
+        else if($(this).val() == 'بى'){ $('#machinesOfepaynotes3').fadeIn(500); }
+        else if($(this).val() == 'مصارى'){ $('#machinesOfepaynotes4').fadeIn(500); }
+    });
+// ----------------end epay ----------------\\
 
     // ------------------  End rate show and hide  --------------------\\
 
@@ -577,12 +639,6 @@ $('#id_nameOfMandoop').change(function(){
     $('#special_machinesOfepay').attr('style','border-top: none;border-right: none;border-left: none;');
     $('#special_machinesOfepay').fadeIn(500);
 
-    $('#special_machinesOfepay2').show();
-    $('#special_machinesOfepay2').attr('name','machinesOfepay');
-    $('#special_machinesOfepay2').attr('style','border-top: none;border-right: none;border-left: none;');
-    $('#div_id_machinesOfepay2').attr('style','float:left; ');
-    $('label[for="id_machinesOfepay_5"]').append($('#div_id_machinesOfepay2'));
-    //data5.innerHTML + '<input style="float:right border-top: none;border-right: none;border-left: none;" type="text"> name="activityKind" value="other"'>;
     // ------------------ End set other choice ----------------- \\
 
     });

@@ -55,13 +55,15 @@ def formQuerry(request):
             if i.replace('.','',1).isdigit() and float(i) > 0:
                 dataOfRating[kindOfMobile[kindOfMobile.index(i)-1]]=float(i)
         mabalashellondamana= request.POST.get('kindOfMobilebalash')
+
         kindOfMobileForQuerry= enhaceData(list(dataOfRating.keys())+list(mabalashellondamana))
         sim = request.POST.getlist('sim')
         dataOfRatingSim = {}
         for i in sim:
             if i.replace('.', '', 1).isdigit() and float(i) > 0:
                 dataOfRatingSim[sim[sim.index(i) - 1]] = float(i)
-        simQuerry = enhaceData(list(dataOfRatingSim.keys()))
+        cardnotes = request.POST.get('cardnotes')
+        simQuerry = enhaceData(list(dataOfRatingSim.keys())+list(cardnotes))
         dataCollector['mobile']=dataOfRating
         dataCollector['sim']=dataOfRatingSim
         evaluate = request.POST.get('evaluate')
