@@ -85,10 +85,15 @@ WSGI_APPLICATION = 'fawryWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dbmtapatdq6kaa',
+        'HOST': 'ec2-3-216-89-250.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'ccbquytqmwqmxm',
+        'PASSWORD': '1bef4761f3e90bf69bafadb1084fd52704bd1731e39dc89e3f2f89932754a707',
     }
 }
 
@@ -117,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'GMT'
 
 USE_I18N = True
 

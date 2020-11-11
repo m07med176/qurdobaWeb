@@ -4,6 +4,7 @@ from django.core.validators import RegexValidator
 from customersApp.models import Sellers
 from django_google_maps import fields as map_fields
 numeric = RegexValidator(r'^[0-9+]', 'Only digit characters.')
+from django.utils import timezone
 
 
 
@@ -73,8 +74,8 @@ class QuerrySellers(models.Model):
         evaluate = models.CharField(max_length=20,choices=evaluates,null=True,verbose_name = "التقييم")
 
         notes = models.TextField(max_length=100,null=True,verbose_name = "الملاحظات")
-        date = models.DateField(null=True,verbose_name = "التاريخ")
-        time = models.TimeField(null=True,verbose_name = "الوقت")
+        date = models.DateField(null=True,verbose_name = "التاريخ",default=timezone.now)
+        time = models.TimeField(null=True,verbose_name = "الوقت",default=timezone.now)
 
             # ----------------- google location ------------------#
         addressmap = map_fields.AddressField(max_length=200,null=True)
@@ -93,5 +94,5 @@ class Devices(models.Model):
     raterName = models.CharField(max_length=20, verbose_name="إسم المقيم", null=True)
     raterid = models.IntegerField(null=True,verbose_name="المقيم")
     rate = models.FloatField(verbose_name="التقييم", null=True)
-    date = models.DateField(verbose_name="التاريخ", null=True)
-    time = models.TimeField(verbose_name="الوقت", null=True)
+    date = models.DateField(verbose_name="التاريخ", null=True,default=timezone.now)
+    time = models.TimeField(verbose_name="الوقت", null=True,default=timezone.now)
