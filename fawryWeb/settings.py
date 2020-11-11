@@ -89,13 +89,14 @@ WSGI_APPLICATION = 'fawryWeb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dfof9hphakrilq',
-        'HOST': 'ec2-54-156-85-145.compute-1.amazonaws.com',
+        'NAME': 'dbmtapatdq6kaa',
+        'HOST': 'ec2-3-216-89-250.compute-1.amazonaws.com',
         'PORT': 5432,
-        'USER': 'elqqguedtnswgj',
-        'PASSWORD': 'fdbf71f41fed0415b19165f03198fb281ecddc5c2f3b3f4943b17bb139dac606',
+        'USER': 'ccbquytqmwqmxm',
+        'PASSWORD': '1bef4761f3e90bf69bafadb1084fd52704bd1731e39dc89e3f2f89932754a707',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
