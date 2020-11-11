@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '46l0r-!6_5tdbyjtxoc!%gf(j%s_q===6e=^3idd9e0d1cy))7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['qurdobaweb.herokuapp.com','127.0.0.1']
 
