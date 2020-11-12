@@ -89,7 +89,7 @@ class QuerryFormSellers(
     ]
     kindOfMobile = forms.MultipleChoiceField( widget=forms.CheckboxSelectMultiple,choices=kindOfMobiles, required=True,label="نوع اجهزه المحمول")
     otherphonechoice = forms.CharField(
-        max_length=100, widget=forms.Textarea(attrs={'rows': 4, 'cols': 20, 'style': "height: 77px;",'placeholder': "ملاحظــــــات",'class':'left','id':'left8'}), required=False,label="")
+        max_length=200, widget=forms.Textarea(attrs={'rows': 4, 'cols': 20, 'style': "height: 77px;",'placeholder': "ملاحظــــــات",'class':'left','id':'left8'}), required=False,label="")
     ## ----------------------نهاية خانة الموبايلات ----------------
 
     evaluates = [

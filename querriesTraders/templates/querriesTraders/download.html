@@ -1,8 +1,11 @@
 {% extends 'querriesTraders/base.html' %}
-
+{% load static %}
 {% block content %}
 
 <h1 align='center'> تم إستخرج ملف الإكسل</h1>
-<a href="{{filename}}" target="_blank" class="btn text-center">تحميل الملف</a>
+<br>
+<br>
+<br>
+<a href="{% static filename %}" class="btn btn-success float-center text-center d-flex justify-content-center"  >تحميل الملف</a>
 
 {% endblock %}

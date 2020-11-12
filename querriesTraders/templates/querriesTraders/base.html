@@ -10,6 +10,15 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
             <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
             <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"/>
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css"/>
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css"/>
+
+
+
+
+
+
             <!--    <link rel="stylesheet" href="{% static 'icons/font-awesome.min.css' %}">-->
             <!--    <link rel="stylesheet" href="{% static 'main/main.css' %}">-->
             <style>
@@ -19,6 +28,52 @@
             //  src: url('../fonts/Tajawal/Tajawal-Regular.ttf')format("truetype"),
             //  local('Tajawal');
             }
+
+*{
+  box-sizing: border-box;
+}
+.arrow{
+  cursor: pointer;
+  position:relative;
+  display:block;
+  margin: 100px 0 0 100px;
+  width:100px;
+  height: 100px;
+  border: solid 6px #999;
+  border-radius: 100%;
+  z-index: 1;
+  transition: all .2s linear;
+  &:before, &:after{
+    content:"";
+    position: absolute;
+    width:35%;
+    height: 10%;
+    top:41%;
+    left:55%;
+    background: #999;
+    z-index: 2;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: all .2s linear;
+  }
+  &:after{
+    z-index: 3;
+    top:59%;
+    left:55%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  &:hover{
+    border: solid 8px #777;
+    &:after, &:before{
+      background: #777;
+    }
+  }
+  &:active{
+    border: solid 8px #555;
+    &:after, &:before{
+      background: #111;
+    }
+  }
+}
 
             html , body{
                 direction: rtl;
@@ -266,6 +321,16 @@
         <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
+
+
+
+
+
         <script type='text/javascript'>
         // --------------- Start page loading ------------------\\
 
@@ -277,6 +342,48 @@
 
         // AJAX call when page has loaded
         $(document).ready(function(){
+         $('#example').DataTable();
+
+  $('#dt-filter-select').dataTable({
+    "fnInitComplete": function () {
+      var myCustomScrollbar = document.querySelector('#dt-horizontal-scroll_wrapper .dataTables_scrollBody');
+      var ps = new PerfectScrollbar(myCustomScrollbar);
+    },
+    "scrollX": true,
+    fixedColumns:   {
+      leftColumns: 1,
+      rightColumns: 1
+  },"pagingType": "first_last_numbers",
+    initComplete: function () {
+      this.api().columns().every( function () {
+          var column = this;
+          var select = $('<select  class="browser-default custom-select form-control-sm"><option value="" selected>Search</option></select>')
+              .appendTo( $(column.footer()).empty() )
+              .on( 'change', function () {
+                  var val = $.fn.dataTable.util.escapeRegex(
+                      $(this).val()
+                  );
+
+                  column
+                      .search( val ? '^'+val+'$' : '', true, false )
+                      .draw();
+              } );
+
+          column.data().unique().sort().each( function ( d, j ) {
+              select.append( '<option value="'+d+'">'+d+'</option>' )
+          } );
+      } );
+  }
+
+
+
+  });
+
+$('#dt-filter-select_filter input').attr('placeholder','قم بالبحث هنه');
+$('option:selected').text('ابحث');
+$('#dt-filter-select_first a').html('الأول');
+$('#dt-filter-select_last a').html('اللأخر');
+
             $.ajax({
                 url: '',
                 data: {

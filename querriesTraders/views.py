@@ -15,59 +15,88 @@ from datetime import datetime
 from wsgiref.util import FileWrapper
 
 def enhaceData(lastData):
-    return str(lastData).replace('[', '').replace(']', '').replace(',', '-').replace("'", '')
+    data = str(lastData).replace('[', '').replace(']', '').replace(',', '-').replace("'", '')
+    return data
+def handelEpays(lastData):
+    while '' in lastData: lastData.remove('')
+    data = str(lastData).replace('[', '').replace(']', '').replace(',', '-').replace("'", '')
+    unhandelled_data = data.replace(' -', "").strip('-').split('-')
+    data = []
+    for n,i  in enumerate(unhandelled_data):
+        count = len(unhandelled_data)
+        key = i.strip()
+        if count-n == 1:
+            value = unhandelled_data[unhandelled_data.index(i)].strip()
+        else:
+            value = unhandelled_data[unhandelled_data.index(i)+1].strip()
+        lvalue = unhandelled_data[unhandelled_data.index(i)-1].strip()
+        if key in ['فورى', 'امان','بى','مصارى']:
+            if value not in ['فورى', 'امان','بى','مصارى']:
+                data.append(key+"("+value+")")
+            else:
+                data.append(key)
+        else:
+            if lvalue not in ['فورى', 'امان', 'بى', 'مصارى']:
+                data.append(key)
 
+    data = str(data).replace('[', '').replace(']', '').replace(',', '-').replace("'", '')
+    return data
 def formQuerry(request):
     # if request.is_ajax and request.method == "POST":
     #     acaaa = request.POST.get('data', None)
     #     print(acaaa)
-
+    for i in request.POST:
+        print(i,request.POST[i])
     dataRespose = {}
     dataRespose['message'] = "عفوا حدث خطأ أثناء التسجيل"
     dataRespose['status'] = "false"
     if request.method == 'POST':
         nameOfMandoop = request.POST.get('nameOfMandoop')
-        area = request.POST.get('area')
+        area = request.POST.get('area').strip()
         activityKind = request.POST.getlist('activityKind')
 
         if activityKind[1] != '':
-            activityKind = activityKind[1]
+            activityKind = activityKind[1].strip()
         else:
             activityKind = activityKind[0]
 
-        shopName = request.POST.get('shopName')
-        ownerName = request.POST.get('ownerName')
-        phoneNumber = request.POST.get('phoneNumber')
-        address = request.POST.get('address')
+        shopName = request.POST.get('shopName').strip()
+        ownerName = request.POST.get('ownerName').strip()
+        phoneNumber = request.POST.get('phoneNumber').strip()
+        address = request.POST.get('address').strip()
 
         machinesOfepay = request.POST.getlist('machinesOfepay')
         if 'other' in machinesOfepay:machinesOfepay.remove('other')
-        machinesOfepayForQuerry = enhaceData(machinesOfepay)
+        machinesOfepayForQuerry = handelEpays(machinesOfepay)
 
         tayer = request.POST.get('tayer')
-        intention = request.POST.get('intention')
+        intention = request.POST.get('intention').strip()
         amountOfTreat = request.POST.get('amountOfTreat')
 
         kindOfMobile = request.POST.getlist('kindOfMobile')
         dataCollector = {}
         dataOfRating = {}
+        dataOfRatingl = []
         for i in kindOfMobile:
             if i.replace('.','',1).isdigit() and float(i) > 0:
                 dataOfRating[kindOfMobile[kindOfMobile.index(i)-1]]=float(i)
-        mabalashellondamana= request.POST.get('kindOfMobilebalash')
+                dataOfRatingl.append(kindOfMobile[kindOfMobile.index(i)-1]+"("+i+")")
+        mabalashellondamana= request.POST.get('kindOfMobilebalash').strip()
 
-        kindOfMobileForQuerry= enhaceData(list(dataOfRating.keys())+list(mabalashellondamana))
+        kindOfMobileForQuerry= enhaceData(dataOfRatingl)+"-"+mabalashellondamana
         sim = request.POST.getlist('sim')
         dataOfRatingSim = {}
+        dataOfRatingSiml = []
         for i in sim:
             if i.replace('.', '', 1).isdigit() and float(i) > 0:
                 dataOfRatingSim[sim[sim.index(i) - 1]] = float(i)
-        cardnotes = request.POST.get('cardnotes')
-        simQuerry = enhaceData(list(dataOfRatingSim.keys())+list(cardnotes))
+                dataOfRatingSiml.append(sim[sim.index(i) - 1] + "(" + i + ")")
+        cardnotes = request.POST.get('cardnotes').strip()
+        simQuerry = enhaceData(dataOfRatingSiml)+"-"+cardnotes
         dataCollector['mobile']=dataOfRating
         dataCollector['sim']=dataOfRatingSim
-        evaluate = request.POST.get('evaluate')
-        notes = request.POST.get('notes')
+        evaluate = request.POST.get('evaluate').strip()
+        notes = request.POST.get('notes').strip()
         dateOfquerry = str(datetime.now().date())
         timeOfquerry = str(datetime.now().time()).split('.')[0]
         data = QuerrySellers(nameOfMandoop=nameOfMandoop,
@@ -118,14 +147,18 @@ def showTable(request):
     all_data = QuerrySellers.objects.all()
     return render(request,'querriesTraders/details.html',{'all_data':all_data})
 
+def datatable(request):
+    all_data = QuerrySellers.objects.all()
+    return render(request,'querriesTraders/datatable.html',{'all_data':all_data})
+
 def extractExcelTable(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
 
     all_data = QuerrySellers.objects.all()
-    content = render_to_string('querriesTraders/details.html', {'all_data':all_data})
+    content = render_to_string('querriesTraders/datatable.html', {'all_data':all_data})
     for i, df in enumerate(pd.read_html(content)):
-        df.to_csv(f'data/excelOfSellers_{i}.csv')
-        filename = BASE_DIR / f'data/excelOfSellers_{i}.csv'
+        df.to_excel(f'querriesTraders/data/excelOfSellers_{i}.xls')
+        filename = BASE_DIR / f'querriesTraders/data/excelOfSellers_{i}.xls'
         return render(request,'querriesTraders/download.html',{'filename':filename})
 
 
