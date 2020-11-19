@@ -45,8 +45,6 @@ def formQuerry(request):
     # if request.is_ajax and request.method == "POST":
     #     acaaa = request.POST.get('data', None)
     #     print(acaaa)
-    for i in request.POST:
-        print(i,request.POST[i])
     dataRespose = {}
     dataRespose['message'] = "عفوا حدث خطأ أثناء التسجيل"
     dataRespose['status'] = "false"
@@ -135,6 +133,7 @@ def formQuerry(request):
                 devicesRate.save()
         dataRespose['message'] = "تم التسجيل بنجاح"
         dataRespose['status'] = "true"
+        print(dataRespose['message'])
         return HttpResponse(
             json.dumps(dataRespose),
             content_type="application/json"

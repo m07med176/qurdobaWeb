@@ -303,14 +303,8 @@
               <div class="col-md-12">
                 <h2 class="text-center mb-3">قرطبة للإتصالات</h2>
 
-
-
-
-        {% block content %}
-        {% endblock %}
-
-
-
+            {% block content %}
+            {% endblock %}
 
                   </div><!--/col-->
             </div><!--/row-->
@@ -328,62 +322,17 @@
         <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
 
 
-
-
-
         <script type='text/javascript'>
         // --------------- Start page loading ------------------\\
 
         // Function for adding User data and removing loading animation
         var replace_data = function(){
             $('#success').show();
-            $('#loading').hide();
-        }
+            $('#loading').hide();    }
 
         // AJAX call when page has loaded
         $(document).ready(function(){
-         $('#example').DataTable();
-
-  $('#dt-filter-select').dataTable({
-    "fnInitComplete": function () {
-      var myCustomScrollbar = document.querySelector('#dt-horizontal-scroll_wrapper .dataTables_scrollBody');
-      var ps = new PerfectScrollbar(myCustomScrollbar);
-    },
-    "scrollX": true,
-    fixedColumns:   {
-      leftColumns: 1,
-      rightColumns: 1
-  },"pagingType": "first_last_numbers",
-    initComplete: function () {
-      this.api().columns().every( function () {
-          var column = this;
-          var select = $('<select  class="browser-default custom-select form-control-sm"><option value="" selected>Search</option></select>')
-              .appendTo( $(column.footer()).empty() )
-              .on( 'change', function () {
-                  var val = $.fn.dataTable.util.escapeRegex(
-                      $(this).val()
-                  );
-
-                  column
-                      .search( val ? '^'+val+'$' : '', true, false )
-                      .draw();
-              } );
-
-          column.data().unique().sort().each( function ( d, j ) {
-              select.append( '<option value="'+d+'">'+d+'</option>' )
-          } );
-      } );
-  }
-
-
-
-  });
-
-$('#dt-filter-select_filter input').attr('placeholder','قم بالبحث هنه');
-$('option:selected').text('ابحث');
-$('#dt-filter-select_first a').html('الأول');
-$('#dt-filter-select_last a').html('اللأخر');
-
+         // datatable place here we was wotre
             $.ajax({
                 url: '',
                 data: {
@@ -393,8 +342,8 @@ $('#dt-filter-select_last a').html('اللأخر');
                 success: function(data){
                     replace_data(data);
                 }
-            });
-        });
+                });
+                });
 
         // --------------- End page loading ------------------\\
             /* Scroll to Top */
@@ -423,6 +372,7 @@ $('#dt-filter-select_last a').html('اللأخر');
         </script>
         {% block script %}
         {% endblock %}
+        
         <!--<script src="{% static 'jquery/jquery-3.5.1.slim.min.js' %}"></script>-->
         <!--<script src="{% static 'main/popper-min.js' %}"></script>-->
         <!--<script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>-->

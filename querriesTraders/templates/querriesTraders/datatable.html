@@ -77,3 +77,52 @@
 
 
 {% endblock %}
+
+{% block script %}
+<script type='text/javascript'>
+    $(document).ready(function(){
+
+    $('#example').DataTable();
+
+    $('#dt-filter-select').dataTable({
+    "fnInitComplete": function () {
+    var myCustomScrollbar = document.querySelector('#dt-horizontal-scroll_wrapper .dataTables_scrollBody');
+    var ps = new PerfectScrollbar(myCustomScrollbar);
+    },
+    "scrollX": true,
+    fixedColumns:   {
+    leftColumns: 1,
+    rightColumns: 1
+    },"pagingType": "first_last_numbers",
+    initComplete: function () {
+    this.api().columns().every( function () {
+        var column = this;
+        var select = $('<select  class="browser-default custom-select form-control-sm"><option value="" selected>Search</option></select>')
+            .appendTo( $(column.footer()).empty() )
+            .on( 'change', function () {
+                var val = $.fn.dataTable.util.escapeRegex(
+                    $(this).val()
+                );
+
+                column
+                    .search( val ? '^'+val+'$' : '', true, false )
+                    .draw();
+            } );
+
+        column.data().unique().sort().each( function ( d, j ) {
+            select.append( '<option value="'+d+'">'+d+'</option>' )
+        } );
+    } );
+    }
+
+
+
+    });
+
+    $('#dt-filter-select_filter input').attr('placeholder','قم بالبحث هنه');
+    $('option:selected').text('ابحث');
+    $('#dt-filter-select_first a').html('الأول');
+    $('#dt-filter-select_last a').html('اللأخر');
+  });
+    </script>
+{% endblock %}
