@@ -46,6 +46,11 @@ INSTALLED_APPS = [
     'django_file_download',
     'welcomeApp',
     'address',
+    'tagerIssues',
+    
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
     #'django_google_maps',
 ]
 
@@ -143,3 +148,14 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'querriesTraders/data'),
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    )
+}

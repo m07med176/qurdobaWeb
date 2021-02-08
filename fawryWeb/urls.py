@@ -15,12 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-
-
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
+from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('customers/' , include('customersApp.urls')),
     path('querry/', include('querriesTraders.urls')),
+    path('tager/', include('tagerIssues.urls')),
     path('', include('welcomeApp.urls')),
+
+    ## authintecation api
+    path('api/auth/token/', TokenObtainPairView.as_view()),   # to obtain token when you login
+    path('api/auth/token/refresh/', TokenRefreshView.as_view()),
+    path('api-auth/', include('rest_framework.urls')),
+
+    # path of login and register
+    url(r'^auth/', include('djoser.urls')),
+    url(r'^auth/', include('djoser.urls.authtoken')),
+    url(r'^auth/', include('djoser.urls.jwt')),
 
 ]

@@ -17,6 +17,7 @@ from wsgiref.util import FileWrapper
 def enhaceData(lastData):
     data = str(lastData).replace('[', '').replace(']', '').replace(',', '-').replace("'", '')
     return data
+
 def handelEpays(lastData):
     while '' in lastData: lastData.remove('')
     data = str(lastData).replace('[', '').replace(']', '').replace(',', '-').replace("'", '')
@@ -41,6 +42,7 @@ def handelEpays(lastData):
 
     data = str(data).replace('[', '').replace(']', '').replace(',', '-').replace("'", '')
     return data
+
 def formQuerry(request):
     # if request.is_ajax and request.method == "POST":
     #     acaaa = request.POST.get('data', None)
